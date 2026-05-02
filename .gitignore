@@ -1,0 +1,9 @@
+models/
+logs/
+__pycache__/
+*.pyc
+*.pth
+*.bin
+*.safetensors
+config/
+dashboard.html
