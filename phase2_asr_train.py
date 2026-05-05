@@ -146,7 +146,7 @@ def run_whisper_full_ft(args):
         model=model, args=training_args,
         train_dataset=ds,
         data_collator=collator,
-        tokenizer=processor.feature_extractor,
+        processing_class=processor.feature_extractor,
     )
 
     t0 = time.time()
@@ -248,7 +248,7 @@ def run_whisper_lora(args):
         model=model, args=training_args,
         train_dataset=ds,
         data_collator=DataCollatorSpeech(processor=processor),
-        tokenizer=processor.feature_extractor,
+        processing_class=processor.feature_extractor,
     )
 
     t0 = time.time()

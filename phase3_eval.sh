@@ -14,7 +14,7 @@ fail(){ echo "  ✗ $*" | tee -a "$RESULTS/eval.log"; }
 
 TASKS="mmlu,hellaswag,arc_challenge,arc_easy,gsm8k,truthfulqa_mc1,winogrande"
 BATCH=auto
-MAX_BATCH=8
+MAX_BATCH=4
 DTYPE=bfloat16
 
 run_lmeval() {

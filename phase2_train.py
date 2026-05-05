@@ -413,7 +413,7 @@ def run_qlora(exp_id, exp_cfg, args):
 
     m = AutoModelForCausalLM.from_pretrained(
         model_id, quantization_config=bnb_cfg,
-        device_map="auto", trust_remote_code=True,
+        device_map={"": 0}, trust_remote_code=True,
         low_cpu_mem_usage=True,
     )
     m = prepare_model_for_kbit_training(m)
