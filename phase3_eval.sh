@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Phase 3 — lm-evaluation-harness standard benchmarks
-# Runs MMLU, HellaSwag, ARC, GSM8K, HumanEval, TruthfulQA, Winogrande
-# Also runs Qwen3 thinking vs no-think comparison
+# Tasks split: loglikelihood group (fast, batch=8) + gsm8k (generate, batch=1)
+# Each task saved separately so crash loses only that task, not everything
 set -uo pipefail
 
 BASE=/home/student/Desktop/Test
@@ -12,178 +12,184 @@ log() { echo "[$(date '+%H:%M:%S')] $*" | tee -a "$RESULTS/eval.log"; }
 ok()  { echo "  ✓ $*" | tee -a "$RESULTS/eval.log"; }
 fail(){ echo "  ✗ $*" | tee -a "$RESULTS/eval.log"; }
 
-TASKS="mmlu,hellaswag,arc_challenge,arc_easy,gsm8k,truthfulqa_mc1,winogrande"
-BATCH=auto
-MAX_BATCH=4
+# Loglikelihood tasks — run together, batch=8, no auto-detection overhead
+LL_TASKS="mmlu,hellaswag,arc_challenge,arc_easy,truthfulqa_mc1,winogrande"
+# Generate task — separate call, batch=1, limited samples
+GEN_TASKS="gsm8k"
+GEN_LIMIT=200
+
 DTYPE=bfloat16
 
-run_lmeval() {
-    local model_path=$1
-    local tag=$2
-    local extra_args="${3:-}"
-    local out_dir="$RESULTS/$tag"
+# ── run one lm-eval call, return 0/1 ──────────────────────────
+_lmeval() {
+    local out_dir=$1; local model_args=$2; local tasks=$3
+    local fewshot=${4:-5}; local batch=${5:-8}; local extra=${6:-}
     mkdir -p "$out_dir"
-
-    log "Evaluating: $tag ($model_path)"
     lm-eval run \
         --model hf \
-        --model_args "pretrained=$model_path,dtype=$DTYPE,trust_remote_code=True" \
-        --tasks "$TASKS" \
-        --num_fewshot 5 \
-        --batch_size "$BATCH" \
-        --max_batch_size "$MAX_BATCH" \
+        --model_args "$model_args" \
+        --tasks "$tasks" \
+        --num_fewshot "$fewshot" \
+        --batch_size "$batch" \
         --output_path "$out_dir" \
-        $extra_args \
-        2>&1 | tee "$out_dir/lmeval.log"
-
-    if [ $? -eq 0 ]; then
-        ok "$tag eval complete"
-        python3 - "$out_dir" "$tag" << 'EOF'
-import sys, json, pathlib, glob
-
-out_dir, tag = sys.argv[1], sys.argv[2]
-files = glob.glob(f"{out_dir}/**/*.json", recursive=True)
-for f in sorted(files):
-    try:
-        data = json.loads(pathlib.Path(f).read_text())
-        results = data.get("results", {})
-        if not results: continue
-        print(f"\n  {tag} Results:")
-        for task, scores in results.items():
-            acc = scores.get("acc,none") or scores.get("acc_norm,none") or scores.get("exact_match,none")
-            if acc is not None:
-                print(f"    {task:<30} {acc*100:.1f}%")
-        break
-    except:
-        pass
-EOF
-    else
-        fail "$tag eval failed"
-    fi
+        $extra \
+        2>&1 | tee -a "$out_dir/lmeval.log"
 }
 
-run_thinking_comparison() {
+# ── evaluate one model (path, tag, extra_model_args) ─────────
+eval_model() {
     local model_path=$1
     local tag=$2
-    log "Qwen3 thinking comparison: $tag"
+    local extra_model_args="${3:-}"
+    local out_dir="$RESULTS/$tag"
 
-    # No-think mode (standard — Qwen3 has thinking disabled by default via system prompt)
-    mkdir -p "$RESULTS/${tag}_nothink"
-    lm-eval run \
-        --model hf \
-        --model_args "pretrained=$model_path,dtype=$DTYPE,trust_remote_code=True" \
-        --tasks "mmlu,gsm8k" \
-        --num_fewshot 5 \
-        --batch_size 4 \
-        --output_path "$RESULTS/${tag}_nothink" \
-        2>&1 | tee "$RESULTS/${tag}_nothink/lmeval.log" || fail "no-think eval failed"
+    if [ -f "$out_dir/.done" ]; then
+        log "  Skipping $tag (already done)"
+        return 0
+    fi
+    mkdir -p "$out_dir"
+    log "Evaluating: $tag"
 
-    # Think mode (enable_thinking=True activates chain-of-thought reasoning)
-    mkdir -p "$RESULTS/${tag}_think"
-    lm-eval run \
-        --model hf \
-        --model_args "pretrained=$model_path,dtype=$DTYPE,trust_remote_code=True,enable_thinking=True" \
-        --tasks "mmlu,gsm8k" \
-        --num_fewshot 5 \
-        --batch_size 1 \
-        --output_path "$RESULTS/${tag}_think" \
-        2>&1 | tee "$RESULTS/${tag}_think/lmeval.log" || fail "think eval failed"
+    local margs="pretrained=$model_path,dtype=$DTYPE,trust_remote_code=True${extra_model_args}"
 
-    ok "Thinking comparison complete for $tag"
+    # 1. Loglikelihood tasks (fast, batch=8)
+    if [ ! -f "$out_dir/.ll_done" ]; then
+        log "  $tag: loglikelihood tasks (batch=8)"
+        if _lmeval "$out_dir" "$margs" "$LL_TASKS" 5 8; then
+            touch "$out_dir/.ll_done"
+            ok "$tag LL tasks done"
+        else
+            fail "$tag LL tasks failed"
+        fi
+    else
+        log "  $tag: LL tasks already done, skipping"
+    fi
+
+    # 2. GSM8K (generate_until, batch=1, limit 200 samples)
+    if [ ! -f "$out_dir/.gsm_done" ]; then
+        log "  $tag: gsm8k (batch=1, limit=$GEN_LIMIT)"
+        if _lmeval "$out_dir/gsm8k" "$margs" "$GEN_TASKS" 5 1 "--limit $GEN_LIMIT"; then
+            touch "$out_dir/.gsm_done"
+            ok "$tag GSM8K done"
+        else
+            fail "$tag GSM8K failed (non-fatal)"
+        fi
+    fi
+
+    touch "$out_dir/.done"
+    ok "$tag all done"
+
+    # Print quick summary
+    python3 - "$out_dir" "$tag" << 'PYEOF'
+import sys, json, pathlib, glob
+out_dir, tag = sys.argv[1], sys.argv[2]
+r_all = {}
+for f in sorted(pathlib.Path(out_dir).glob("**/*.json")):
+    try:
+        data = json.loads(f.read_text())
+        r = data.get("results", {})
+        if r: r_all.update(r)
+    except: pass
+if not r_all:
+    print(f"  {tag}: no results yet")
+else:
+    mmlu  = r_all.get("mmlu",{}).get("acc,none")
+    gsm8k = r_all.get("gsm8k",{}).get("exact_match,none")
+    arc_c = r_all.get("arc_challenge",{}).get("acc_norm,none")
+    wg    = r_all.get("winogrande",{}).get("acc,none")
+    hs    = r_all.get("hellaswag",{}).get("acc_norm,none")
+    def fmt(v): return f"{v*100:.1f}%" if v is not None else "  —  "
+    print(f"  {tag}: MMLU={fmt(mmlu)} GSM8K={fmt(gsm8k)} ARC-C={fmt(arc_c)} WG={fmt(wg)} HS={fmt(hs)}")
+PYEOF
 }
 
-# ── Main ─────────────────────────────────────────────────────
+# ── evaluate a fine-tuned checkpoint ─────────────────────────
 eval_checkpoint() {
     local checkpoint=$1
+    if [ ! -d "$checkpoint" ]; then return; fi
     local exp_name
     exp_name=$(basename "$checkpoint")
+    local out_dir="$RESULTS/ft_${exp_name}"
 
-    if [ ! -d "$checkpoint" ]; then return; fi
-    if [ -f "$RESULTS/ft_${exp_name}/.done" ]; then
+    if [ -f "$out_dir/.done" ]; then
         log "  Skipping $exp_name (already done)"
         return
     fi
 
-    mkdir -p "$RESULTS/ft_${exp_name}"
-
     if [ -f "$checkpoint/adapter_config.json" ]; then
+        local base
         base=$(python3 -c "import json; print(json.load(open('$checkpoint/adapter_config.json'))['base_model_name_or_path'])")
         log "Evaluating PEFT: $exp_name (base=$base)"
-        # Large models (70B+) need 4-bit loading to fit in 119 GB unified memory
-        local extra_model_args=""
+        local extra=""
         if echo "$base" | grep -qiE "72B|70B|Mixtral|235B"; then
-            extra_model_args=",load_in_4bit=True,bnb_4bit_compute_dtype=bfloat16"
-            log "  (using NF4 loading for large base model)"
+            extra=",load_in_4bit=True,bnb_4bit_compute_dtype=bfloat16"
+            log "  (NF4 loading for large base)"
         fi
-        lm-eval run \
-            --model hf \
-            --model_args "pretrained=$base,peft=$checkpoint,dtype=$DTYPE,trust_remote_code=True${extra_model_args}" \
-            --tasks "$TASKS" \
-            --num_fewshot 5 \
-            --batch_size "$BATCH" \
-            --max_batch_size "$MAX_BATCH" \
-            --output_path "$RESULTS/ft_${exp_name}" \
-            2>&1 | tee "$RESULTS/ft_${exp_name}/lmeval.log" \
-            && { ok "$exp_name done"; touch "$RESULTS/ft_${exp_name}/.done"; } \
-            || fail "FT eval failed for $exp_name"
+        eval_model "$base" "ft_${exp_name}" ",peft=$checkpoint${extra}"
     else
         log "Evaluating full model: $exp_name"
-        run_lmeval "$checkpoint" "ft_${exp_name}" \
-            && touch "$RESULTS/ft_${exp_name}/.done" \
-            || fail "FT eval failed for $exp_name"
+        eval_model "$checkpoint" "ft_${exp_name}"
     fi
 }
 
+# ── Summary table ─────────────────────────────────────────────
+print_summary() {
+    log "--- Results Summary ---"
+    python3 - "$RESULTS" << 'PYEOF'
+import sys, json, pathlib
+
+results_dir = pathlib.Path(sys.argv[1])
+print(f"\n{'Model':<42} {'MMLU':>6} {'GSM8K':>6} {'ARC-C':>6} {'WG':>6} {'HS':>6}")
+print("-" * 74)
+rows = []
+for d in sorted(results_dir.iterdir()):
+    if not d.is_dir() or d.name.startswith("."): continue
+    r_all = {}
+    for f in sorted(d.glob("**/*.json")):
+        try:
+            data = json.loads(f.read_text())
+            r = data.get("results", {})
+            if r: r_all.update(r)
+        except: pass
+    if not r_all: continue
+    def g(task, key):
+        v = r_all.get(task, {}).get(key)
+        return f"{v*100:5.1f}%" if v is not None else "   — "
+    mmlu  = g("mmlu",         "acc,none")
+    gsm8k = g("gsm8k",        "exact_match,none")
+    arc_c = g("arc_challenge", "acc_norm,none")
+    wg    = g("winogrande",    "acc,none")
+    hs    = g("hellaswag",     "acc_norm,none")
+    print(f"{d.name:<42} {mmlu} {gsm8k} {arc_c} {wg} {hs}")
+PYEOF
+}
+
+# ── Main ─────────────────────────────────────────────────────
 main() {
-    log "=== Phase 3: Standard Evaluation ==="
+    log "=== Phase 3: Standard Evaluation (v2 — per-task saves) ==="
     python3 -c "import lm_eval; print('lm_eval', lm_eval.__version__)" 2>/dev/null || {
-        fail "lm-eval not installed. Run: pip install lm-eval"
-        exit 1
+        fail "lm-eval not installed"; exit 1
     }
 
     # 1. Base model baseline
     log "--- Base model: Qwen3-8B ---"
-    run_lmeval "Qwen/Qwen3-8B" "qwen3-8b-base"
-    run_thinking_comparison "Qwen/Qwen3-8B" "qwen3-8b-base"
+    eval_model "Qwen/Qwen3-8B" "qwen3-8b-base"
 
-    # 2. All trained checkpoints in models/ dir
+    # 2. All fine-tuned checkpoints
     TRAIN_DIR="$BASE/models"
     log "--- Fine-tuned checkpoints ---"
-    for checkpoint in "$TRAIN_DIR"/T1_* "$TRAIN_DIR"/T2_* "$TRAIN_DIR"/T3_* \
-                      "$TRAIN_DIR"/T4_* "$TRAIN_DIR"/T5_* "$TRAIN_DIR"/T6_* \
-                      "$TRAIN_DIR"/T7_* "$TRAIN_DIR"/T8_* "$TRAIN_DIR"/T11_* \
-                      "$TRAIN_DIR"/T12_* "$TRAIN_DIR"/T20_* "$TRAIN_DIR"/T21_* \
-                      "$TRAIN_DIR"/T22_* "$TRAIN_DIR"/T23_* "$TRAIN_DIR"/T24_* \
-                      "$TRAIN_DIR"/M1_* "$TRAIN_DIR"/M2_* "$TRAIN_DIR"/M3_*; do
+    for checkpoint in \
+        "$TRAIN_DIR"/T1_*  "$TRAIN_DIR"/T2_*  "$TRAIN_DIR"/T3_*  \
+        "$TRAIN_DIR"/T4_*  "$TRAIN_DIR"/T5_*  "$TRAIN_DIR"/T6_*  \
+        "$TRAIN_DIR"/T7_*  "$TRAIN_DIR"/T8_*  "$TRAIN_DIR"/T11_* \
+        "$TRAIN_DIR"/T12_* "$TRAIN_DIR"/T20_* "$TRAIN_DIR"/T21_* \
+        "$TRAIN_DIR"/T22_* "$TRAIN_DIR"/T23_* "$TRAIN_DIR"/T24_* \
+        "$TRAIN_DIR"/M1_*  "$TRAIN_DIR"/M2_*  "$TRAIN_DIR"/M3_*; do
         eval_checkpoint "$checkpoint"
     done
 
-    # 3. Summary table
-    log "--- Results Summary ---"
-    python3 - "$RESULTS" << 'EOF'
-import sys, json, pathlib, glob
-
-results_dir = pathlib.Path(sys.argv[1])
-print(f"\n{'Model':<40} {'MMLU':>6} {'GSM8K':>6} {'ARC-C':>6} {'WG':>5} {'HS':>5}")
-print("-" * 70)
-for out_dir in sorted(results_dir.iterdir()):
-    if not out_dir.is_dir(): continue
-    files = sorted(out_dir.glob("**/*.json"))
-    for f in files:
-        try:
-            data = json.loads(f.read_text())
-            r = data.get("results", {})
-            if not r: continue
-            mmlu  = r.get("mmlu",{}).get("acc,none", 0) * 100
-            gsm8k = r.get("gsm8k",{}).get("exact_match,none", 0) * 100
-            arc_c = r.get("arc_challenge",{}).get("acc_norm,none", 0) * 100
-            wg    = r.get("winogrande",{}).get("acc,none", 0) * 100
-            hs    = r.get("hellaswag",{}).get("acc_norm,none", 0) * 100
-            print(f"{out_dir.name:<40} {mmlu:>5.1f}% {gsm8k:>5.1f}% {arc_c:>5.1f}% {wg:>4.1f}% {hs:>4.1f}%")
-            break
-        except: pass
-EOF
-
+    # 3. Summary
+    print_summary
     log "=== Evaluation complete. Results in: $RESULTS ==="
 }
 
