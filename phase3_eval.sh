@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 # Phase 3 — lm-evaluation-harness standard benchmarks
-# Tasks split: loglikelihood group (fast, batch=8) + gsm8k (generate, batch=1)
-# Each task saved separately so crash loses only that task, not everything
+# v3: per-task limits to keep each model under ~90 min total
+#   Rate measured: ~0.83 req/sec at batch=8 on GB10 → budget ~4500 req/hr
+#   LL tasks (--limit 100 each): ~1800 req → ~36 min
+#   MMLU (--limit 5 per subtask): ~1140 req → ~23 min
+#   GSM8K (--limit 100, batch=1): ~100 req → ~10 min
+#   Total per model: ~70 min
 set -uo pipefail
 
 BASE=/home/student/Desktop/Test
@@ -12,11 +16,17 @@ log() { echo "[$(date '+%H:%M:%S')] $*" | tee -a "$RESULTS/eval.log"; }
 ok()  { echo "  ✓ $*" | tee -a "$RESULTS/eval.log"; }
 fail(){ echo "  ✗ $*" | tee -a "$RESULTS/eval.log"; }
 
-# Loglikelihood tasks — run together, batch=8, no auto-detection overhead
-LL_TASKS="mmlu,hellaswag,arc_challenge,arc_easy,truthfulqa_mc1,winogrande"
-# Generate task — separate call, batch=1, limited samples
+# Loglikelihood tasks — NO mmlu here (too many subtasks × limit)
+LL_TASKS="hellaswag,arc_challenge,arc_easy,truthfulqa_mc1,winogrande"
+LL_LIMIT=100   # per task → 100×(4+4+4+4+2)=1800 req → ~36 min/model
+
+# MMLU — separate call so its limit doesn't blow up
+MMLU_TASKS="mmlu"
+MMLU_LIMIT=5   # per subtask → 57×5×4=1140 req → ~23 min/model
+
+# Generate task — separate call, batch=1
 GEN_TASKS="gsm8k"
-GEN_LIMIT=200
+GEN_LIMIT=100
 
 DTYPE=bfloat16
 
@@ -52,10 +62,10 @@ eval_model() {
 
     local margs="pretrained=$model_path,dtype=$DTYPE,trust_remote_code=True${extra_model_args}"
 
-    # 1. Loglikelihood tasks (fast, batch=8)
+    # 1. Non-MMLU loglikelihood tasks (limit 100/task → ~36 min)
     if [ ! -f "$out_dir/.ll_done" ]; then
-        log "  $tag: loglikelihood tasks (batch=8)"
-        if _lmeval "$out_dir" "$margs" "$LL_TASKS" 5 8; then
+        log "  $tag: LL tasks limit=$LL_LIMIT (batch=8, ~36 min)"
+        if _lmeval "$out_dir" "$margs" "$LL_TASKS" 5 8 "--limit $LL_LIMIT"; then
             touch "$out_dir/.ll_done"
             ok "$tag LL tasks done"
         else
@@ -65,9 +75,22 @@ eval_model() {
         log "  $tag: LL tasks already done, skipping"
     fi
 
-    # 2. GSM8K (generate_until, batch=1, limit 200 samples)
+    # 2. MMLU separately (limit 5/subtask → 57×5×4=1140 req → ~23 min)
+    if [ ! -f "$out_dir/.mmlu_done" ]; then
+        log "  $tag: MMLU limit=$MMLU_LIMIT/subtask (batch=8, ~23 min)"
+        if _lmeval "$out_dir/mmlu" "$margs" "$MMLU_TASKS" 5 8 "--limit $MMLU_LIMIT"; then
+            touch "$out_dir/.mmlu_done"
+            ok "$tag MMLU done"
+        else
+            fail "$tag MMLU failed (non-fatal)"
+        fi
+    else
+        log "  $tag: MMLU already done, skipping"
+    fi
+
+    # 3. GSM8K (generate_until, batch=1, limit 100 samples → ~10 min)
     if [ ! -f "$out_dir/.gsm_done" ]; then
-        log "  $tag: gsm8k (batch=1, limit=$GEN_LIMIT)"
+        log "  $tag: gsm8k (batch=1, limit=$GEN_LIMIT, ~10 min)"
         if _lmeval "$out_dir/gsm8k" "$margs" "$GEN_TASKS" 5 1 "--limit $GEN_LIMIT"; then
             touch "$out_dir/.gsm_done"
             ok "$tag GSM8K done"
