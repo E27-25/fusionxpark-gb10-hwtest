@@ -82,27 +82,57 @@ GB10 benefits more from batching (TTFT increases but throughput improves):
 
 | Model | Batch | GB10 tok/s | Notes |
 |---|---|---|---|
-| Qwen3-8B BF16 | 1 | 10 tok/s | baseline |
-| Qwen3-8B BF16 | 4 | 11 tok/s | +10% |
-| Qwen3-8B BF16 | 8 | 22 tok/s | +120% |
+| Qwen3-8B BF16 | 1 | 9.9 tok/s | baseline |
+| Qwen3-8B BF16 | 4 | 11 tok/s | +11% |
+| Qwen3-8B BF16 | 8 | 22.3 tok/s | +125% |
+| Qwen3-8B INT8 | 1 | 14.2 tok/s | memory-bound |
+| Qwen3-8B INT8 | 8 | **96.4 tok/s** | compute-bound! 4.3× over BF16 b=8 |
+| Qwen3-8B NF4 | 1 | 26.3 tok/s | fast at bs=1 |
+| Qwen3-8B NF4 | 8 | 20.4 tok/s | dequant bottleneck at bs=8 |
+| Qwen3-32B BF16 | 1 | 2.4 tok/s | memory-bound |
+| Qwen3-32B BF16 | 8 | 6.5 tok/s | +171% |
+| Qwen3-32B INT8 | 1 | 4.7 tok/s | memory-bound |
+| Qwen3-32B INT8 | 8 | **34.0 tok/s** | compute-bound! 5.2× over BF16 b=8 |
+| Qwen3-32B NF4 | 1 | 7.6 tok/s | fast at bs=1 |
+| Qwen3-32B NF4 | 8 | 5.3 tok/s | dequant bottleneck |
 | Qwen3-30B-A3B BF16 | 1 | 12 tok/s | MoE efficient decode |
 | Qwen3-30B-A3B BF16 | 4 | 12.5 tok/s | barely changes |
 
 ### 3C. Quantization Effect (same Qwen3-8B model)
 
-All measured on GB10 via HuggingFace:
+All measured on GB10 via HuggingFace `generate()`:
 
-| Format | tok/s | Memory | vs BF16 | RTX 5070 Ti (same format) [est] |
+**Batch=1 (latency-focused):**
+
+| Format | tok/s | vs BF16 | Regime |
+|---|---|---|---|
+| BF16 | **9.9** | baseline | memory-BW bound |
+| INT8 (bitsandbytes) | **14.2** | +43% | memory-BW bound |
+| NF4 (bitsandbytes) | **26.3** | **+166%** | memory-BW bound |
+| AWQ | FAILED (needs gptqmodel) | — | — |
+| FP8 (planned) | pending | — | — |
+
+**Batch=8 (throughput-focused) — reveals compute-bound regime:**
+
+| Format | tok/s (total) | vs BF16 b=8 | vs same format b=1 | Notes |
 |---|---|---|---|---|
-| BF16 | **10.0** | 16.4 GB | baseline | ~50 tok/s |
-| INT8 (bitsandbytes) | **14.4** | 9.6 GB | +44% | ~70 tok/s |
-| NF4 (bitsandbytes) | **26.3** | 16.4 GB | **+163%** | ~100–120 tok/s |
-| AWQ | FAILED | — | — | ~120–140 tok/s |
-| FP8 (planned) | pending | ~8 GB | — | ~80–100 tok/s |
+| BF16 | **22.3** | baseline | +125% | still memory-bound |
+| INT8 | **96.4** | **+332%** | **+578%** | ← compute-bound! INT8 GEMM dominates |
+| NF4 | **20.4** | −9% | −22% | dequant overhead at high batch |
 
-> **Why NF4 faster than INT8 on GB10:** NF4 is memory-bandwidth-limited. It uses 4-bit storage but dequantizes to BF16 at compute time. Dequantization is fast on Blackwell, and the 2× reduction in model bytes loaded from memory (16 GB → ~8 GB stored, 16 GB still loaded per step) is what drives the speedup. INT8 W8A8 requires quantized matrix multiply which may not have optimized kernels on aarch64.
+**Qwen3-32B precision sweep (batch=1 / batch=8):**
 
-> **NF4 bw_util_pct = 154%:** This was a calculation artifact (the formula assumed 2 bytes/param but NF4 is 0.5 bytes/param stored; actual BW used per token step is model_gb × tok/s = 8.3 GB × 26.3 = 218 GB/s which exceeds our 134 GB/s measured peak — suggesting measurement inconsistency or caching effects).
+| Format | B=1 tok/s | B=8 tok/s | B=8 vs B=1 |
+|---|---|---|---|
+| BF16 | **2.4** | **6.5** | +171% |
+| INT8 | **4.7** | **34.0** | **+623%** ← compute-bound |
+| NF4 | **7.6** | **5.3** | −30% (dequant bottleneck) |
+
+> **Key insight — INT8 batch=8:** At high batch sizes the arithmetic intensity (FLOPs/byte) becomes high enough to enter the compute-bound regime. INT8 W8A8 doubles effective TOPS vs BF16, yielding 4–6× more throughput at batch=8. NF4 degrades at batch=8 because dequantization overhead (4-bit → BF16 conversion for every element) cannot be amortized across the batch the same way.
+
+> **NF4 best for batch=1 on GB10:** Fewer bytes read per token step (0.5 bytes/param vs 2 for BF16). At batch=1 the system is purely memory-bandwidth-bound so NF4 wins. At batch=8 INT8 wins.
+
+> **RTX 5070 Ti comparison (est. batch=1):** BF16~50 tok/s, INT8~70 tok/s, NF4~100–120 tok/s. The 5070 Ti leads 4–5× on per-token latency due to 896 GB/s vs 134 GB/s memory bandwidth.
 
 ### 3D. Framework Comparison (GB10 only)
 
