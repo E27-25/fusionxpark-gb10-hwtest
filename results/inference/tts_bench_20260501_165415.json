@@ -1,0 +1,31 @@
+[
+  {
+    "model": "suno/bark",
+    "model_key": "bark",
+    "mean_rtf": 2.166,
+    "rtf_stdev": 0.1569,
+    "rtf_p95": 2.3205,
+    "peak_memory_gb": 2.48,
+    "model_load_gb": 2.27,
+    "samples": [
+      {
+        "text_idx": 0,
+        "rtf_mean": 2.3447,
+        "rtf_stdev": 0.4597,
+        "audio_sec": 4.667
+      },
+      {
+        "text_idx": 1,
+        "rtf_mean": 2.1022,
+        "rtf_stdev": 0.021,
+        "audio_sec": 6.907
+      },
+      {
+        "text_idx": 2,
+        "rtf_mean": 2.0511,
+        "rtf_stdev": 0.0396,
+        "audio_sec": 7.373
+      }
+    ]
+  }
+]

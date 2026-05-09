@@ -1,0 +1,43 @@
+{
+  "embedding": [
+    {
+      "model": "intfloat/e5-mistral-7b-instruct",
+      "model_key": "e5-mistral-7b",
+      "batch_size": 1,
+      "sentences_per_sec": 1.4,
+      "latency_ms": 708.39,
+      "embed_dim": 4096,
+      "pooling": "last-token",
+      "peak_memory_gb": 14.26,
+      "model_load_gb": 14.22,
+      "power_w": 36.6
+    },
+    {
+      "model": "intfloat/e5-mistral-7b-instruct",
+      "model_key": "e5-mistral-7b",
+      "batch_size": 8,
+      "sentences_per_sec": 8.7,
+      "latency_ms": 914.56,
+      "embed_dim": 4096,
+      "pooling": "last-token",
+      "peak_memory_gb": 14.27,
+      "model_load_gb": 14.22,
+      "power_w": 62.37
+    },
+    {
+      "model": "intfloat/e5-mistral-7b-instruct",
+      "model_key": "e5-mistral-7b",
+      "batch_size": 32,
+      "sentences_per_sec": 13.8,
+      "latency_ms": 2322.76,
+      "embed_dim": 4096,
+      "pooling": "last-token",
+      "peak_memory_gb": 14.32,
+      "model_load_gb": 14.22,
+      "power_w": 76.19
+    }
+  ],
+  "reranking": [],
+  "mteb": {},
+  "beir": {}
+}

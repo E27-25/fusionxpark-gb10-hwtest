@@ -1,0 +1,44 @@
+{
+  "model": "Qwen/Qwen3-8B",
+  "timestamp": "2026-04-30T17:50:23.058857",
+  "reference_bw_gbs": 273,
+  "reference_tflops_bf16": 67,
+  "bf16": {
+    "ttft_ms": 364.9,
+    "tokens_per_sec": 10.0,
+    "tpot_ms": 100.32,
+    "peak_memory_gb": 16.45,
+    "power_w": 32.2,
+    "temp_c": 65,
+    "tokens_per_watt": 0.31,
+    "bw_util_pct": 58.4
+  },
+  "int8": {
+    "ttft_ms": 110.8,
+    "tokens_per_sec": 14.4,
+    "tpot_ms": 69.22,
+    "peak_memory_gb": 9.6
+  },
+  "nf4": {
+    "ttft_ms": 390.4,
+    "tokens_per_sec": 26.3,
+    "tpot_ms": 38.0,
+    "peak_memory_gb": 16.42,
+    "power_w": 47.2,
+    "temp_c": 70,
+    "tokens_per_watt": 0.56,
+    "bw_util_pct": 154.3
+  },
+  "awq": {
+    "error": "Command '['/usr/bin/gcc', '/tmp/tmpr8w6igyl/cuda_utils.c', '-O3', '-shared', '-fPIC', '-Wno-psabi', '-o', '/tmp/tmpr8w6igyl/cuda_utils.cpython-312-aarch64-linux-gnu.so', '-l:libcuda.so.1', '-L/home/student/.local/lib/python3.12/site-packages/triton/backends/nvidia/lib', '-L/lib/aarch64-linux-gnu', '-I/home/student/.local/lib/python3.12/site-packages/triton/backends/nvidia/include', '-I/tmp/tmpr8w6igyl', '-I/usr/include/python3.12']' returned non-zero exit status 1."
+  },
+  "gguf_q4": {
+    "error": "gguf_not_found"
+  },
+  "gguf_q5": {
+    "error": "gguf_not_found"
+  },
+  "gguf_q8": {
+    "error": "gguf_not_found"
+  }
+}

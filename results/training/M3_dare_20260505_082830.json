@@ -1,0 +1,15 @@
+{
+  "experiment": "M3",
+  "method": "dare_ties",
+  "model_a": "Qwen/Qwen3-8B",
+  "model_b": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "dare_density": 0.5,
+  "coder_weight": 0.4,
+  "output_dir": "/home/student/Desktop/Test/models/M3_Qwen3-8B_dare_coder",
+  "merge_time_s": 13.4,
+  "timestamp": "2026-05-05T08:28:30.402609",
+  "status": "ok",
+  "memory_gb": 16.38,
+  "gen_sec": 9.16,
+  "sample_output": " Can you give an example of each? Also, what is the difference between classification and regression? Can you give an example of each? Finally, what is the difference between a training set, validation set, and test set? Can you give an example of each?\n\nSupervised learning involves training a model"
+}

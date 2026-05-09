@@ -1,0 +1,154 @@
+{
+  "8b": [
+    {
+      "model": "Qwen/Qwen3-8B",
+      "precision": "BF16",
+      "bytes_per_param": 2.0,
+      "est_weight_gb": 16.0,
+      "load_mem_gb": 16.38,
+      "status": "ok",
+      "b1_short": {
+        "batch": 1,
+        "in_tokens": 10,
+        "out_tokens": 200,
+        "tok_per_sec": 9.92,
+        "ttft_ms": 20191.9,
+        "avg_latency_s": 20.163,
+        "peak_mem_gb": 16.45,
+        "bw_util_pct": 118.4
+      },
+      "b8_short": {
+        "batch": 8,
+        "in_tokens": 10,
+        "out_tokens": 200,
+        "tok_per_sec": 22.34,
+        "ttft_ms": 71448.0,
+        "avg_latency_s": 71.618,
+        "peak_mem_gb": 16.68,
+        "bw_util_pct": 266.7
+      },
+      "b1_medium": {
+        "batch": 1,
+        "in_tokens": 39,
+        "out_tokens": 200,
+        "tok_per_sec": 9.92,
+        "ttft_ms": 20173.4,
+        "avg_latency_s": 20.165,
+        "peak_mem_gb": 16.45,
+        "bw_util_pct": 118.4
+      },
+      "b8_medium": {
+        "batch": 8,
+        "in_tokens": 39,
+        "out_tokens": 200,
+        "tok_per_sec": 22.22,
+        "ttft_ms": 72642.1,
+        "avg_latency_s": 71.994,
+        "peak_mem_gb": 16.71,
+        "bw_util_pct": 265.3
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-8B",
+      "precision": "INT8",
+      "bytes_per_param": 1.0,
+      "est_weight_gb": 8.0,
+      "load_mem_gb": 9.47,
+      "status": "ok",
+      "b1_short": {
+        "batch": 1,
+        "in_tokens": 10,
+        "out_tokens": 200,
+        "tok_per_sec": 14.18,
+        "ttft_ms": 14125.4,
+        "avg_latency_s": 14.103,
+        "peak_mem_gb": 9.51,
+        "bw_util_pct": 84.7
+      },
+      "b8_short": {
+        "batch": 8,
+        "in_tokens": 10,
+        "out_tokens": 200,
+        "tok_per_sec": 96.38,
+        "ttft_ms": 16604.9,
+        "avg_latency_s": 16.602,
+        "peak_mem_gb": 9.74,
+        "bw_util_pct": 575.4
+      },
+      "b1_medium": {
+        "batch": 1,
+        "in_tokens": 39,
+        "out_tokens": 200,
+        "tok_per_sec": 14.14,
+        "ttft_ms": 14140.0,
+        "avg_latency_s": 14.141,
+        "peak_mem_gb": 9.53,
+        "bw_util_pct": 84.4
+      },
+      "b8_medium": {
+        "batch": 8,
+        "in_tokens": 39,
+        "out_tokens": 200,
+        "tok_per_sec": 95.57,
+        "ttft_ms": 16743.7,
+        "avg_latency_s": 16.741,
+        "peak_mem_gb": 9.78,
+        "bw_util_pct": 570.6
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-8B",
+      "precision": "NF4",
+      "bytes_per_param": 0.5,
+      "est_weight_gb": 4.0,
+      "load_mem_gb": 6.12,
+      "status": "ok",
+      "b1_short": {
+        "batch": 1,
+        "in_tokens": 10,
+        "out_tokens": 200,
+        "tok_per_sec": 26.28,
+        "ttft_ms": 7617.5,
+        "avg_latency_s": 7.612,
+        "peak_mem_gb": 6.23,
+        "bw_util_pct": 78.4
+      },
+      "b8_short": {
+        "batch": 8,
+        "in_tokens": 10,
+        "out_tokens": 200,
+        "tok_per_sec": 20.43,
+        "ttft_ms": 77747.2,
+        "avg_latency_s": 78.298,
+        "peak_mem_gb": 6.48,
+        "bw_util_pct": 61.0
+      },
+      "b1_medium": {
+        "batch": 1,
+        "in_tokens": 39,
+        "out_tokens": 200,
+        "tok_per_sec": 26.19,
+        "ttft_ms": 7637.2,
+        "avg_latency_s": 7.635,
+        "peak_mem_gb": 6.23,
+        "bw_util_pct": 78.2
+      },
+      "b8_medium": {
+        "batch": 8,
+        "in_tokens": 39,
+        "out_tokens": 200,
+        "tok_per_sec": 20.32,
+        "ttft_ms": 78730.7,
+        "avg_latency_s": 78.751,
+        "peak_mem_gb": 6.51,
+        "bw_util_pct": 60.7
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-8B",
+      "precision": "AWQ-INT4",
+      "status": "load_failed",
+      "error": "Loading an AWQ quantized model requires gptqmodel. Please install it with `pip install gptqmodel`"
+    }
+  ]
+}

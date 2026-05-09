@@ -1,0 +1,37 @@
+{
+  "embedding": [],
+  "reranking": [
+    {
+      "model": "BAAI/bge-reranker-v2-m3",
+      "model_key": "bge-reranker-v2",
+      "batch_size": 1,
+      "pairs_per_sec": 8.9,
+      "latency_ms": 112.88,
+      "peak_memory_gb": 1.17,
+      "model_load_gb": 1.14,
+      "power_w": 30.7
+    },
+    {
+      "model": "BAAI/bge-reranker-v2-m3",
+      "model_key": "bge-reranker-v2",
+      "batch_size": 8,
+      "pairs_per_sec": 70.4,
+      "latency_ms": 113.65,
+      "peak_memory_gb": 1.17,
+      "model_load_gb": 1.14,
+      "power_w": 39.64
+    },
+    {
+      "model": "BAAI/bge-reranker-v2-m3",
+      "model_key": "bge-reranker-v2",
+      "batch_size": 16,
+      "pairs_per_sec": 124.2,
+      "latency_ms": 128.81,
+      "peak_memory_gb": 1.18,
+      "model_load_gb": 1.14,
+      "power_w": 47.88
+    }
+  ],
+  "mteb": {},
+  "beir": {}
+}

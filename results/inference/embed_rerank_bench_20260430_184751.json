@@ -1,0 +1,144 @@
+{
+  "embedding": [
+    {
+      "model": "Qwen/Qwen3-Embedding",
+      "model_key": "qwen3-embed",
+      "error": "Qwen/Qwen3-Embedding is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'\nIf this is a private repository, make sure to pass a token having permission to this repo either by logging in with `hf auth login` or by passing `token=<your_token>`"
+    },
+    {
+      "model": "Qwen/Qwen3-VL-Embedding-2B",
+      "model_key": "qwen3-vl-embed-2b",
+      "batch_size": 1,
+      "sentences_per_sec": 8.0,
+      "latency_ms": 124.99,
+      "embed_dim": 2048,
+      "peak_memory_gb": 4.29,
+      "model_load_gb": 4.26,
+      "power_w": 26.63
+    },
+    {
+      "model": "Qwen/Qwen3-VL-Embedding-2B",
+      "model_key": "qwen3-vl-embed-2b",
+      "batch_size": 8,
+      "sentences_per_sec": 62.8,
+      "latency_ms": 127.41,
+      "embed_dim": 2048,
+      "peak_memory_gb": 4.32,
+      "model_load_gb": 4.26,
+      "power_w": 40.19
+    },
+    {
+      "model": "Qwen/Qwen3-VL-Embedding-2B",
+      "model_key": "qwen3-vl-embed-2b",
+      "batch_size": 32,
+      "sentences_per_sec": 189.1,
+      "latency_ms": 169.26,
+      "embed_dim": 2048,
+      "peak_memory_gb": 4.41,
+      "model_load_gb": 4.26,
+      "power_w": 79.84
+    },
+    {
+      "model": "Qwen/Qwen3-VL-Embedding-8B",
+      "model_key": "qwen3-vl-embed-8b",
+      "batch_size": 1,
+      "sentences_per_sec": 2.8,
+      "latency_ms": 352.52,
+      "embed_dim": 4096,
+      "peak_memory_gb": 16.33,
+      "model_load_gb": 16.32,
+      "power_w": 33.38
+    },
+    {
+      "model": "Qwen/Qwen3-VL-Embedding-8B",
+      "model_key": "qwen3-vl-embed-8b",
+      "batch_size": 8,
+      "sentences_per_sec": 18.7,
+      "latency_ms": 427.61,
+      "embed_dim": 4096,
+      "peak_memory_gb": 16.37,
+      "model_load_gb": 16.32,
+      "power_w": 50.5
+    },
+    {
+      "model": "Qwen/Qwen3-VL-Embedding-8B",
+      "model_key": "qwen3-vl-embed-8b",
+      "batch_size": 32,
+      "sentences_per_sec": 35.8,
+      "latency_ms": 893.03,
+      "embed_dim": 4096,
+      "peak_memory_gb": 16.49,
+      "model_load_gb": 16.32,
+      "power_w": 76.16
+    },
+    {
+      "model": "BAAI/bge-m3",
+      "model_key": "bge-m3",
+      "batch_size": 1,
+      "sentences_per_sec": 19.4,
+      "latency_ms": 51.54,
+      "embed_dim": 1024,
+      "peak_memory_gb": 16.39,
+      "model_load_gb": 1.17,
+      "power_w": 22.07
+    },
+    {
+      "model": "BAAI/bge-m3",
+      "model_key": "bge-m3",
+      "batch_size": 8,
+      "sentences_per_sec": 155.4,
+      "latency_ms": 51.49,
+      "embed_dim": 1024,
+      "peak_memory_gb": 1.17,
+      "model_load_gb": 1.17,
+      "power_w": 35.23
+    },
+    {
+      "model": "BAAI/bge-m3",
+      "model_key": "bge-m3",
+      "batch_size": 32,
+      "sentences_per_sec": 519.7,
+      "latency_ms": 61.58,
+      "embed_dim": 1024,
+      "peak_memory_gb": 1.19,
+      "model_load_gb": 1.17,
+      "power_w": 62.64
+    },
+    {
+      "model": "intfloat/e5-mistral-7b-instruct",
+      "model_key": "e5-mistral-7b",
+      "batch_size": 1,
+      "sentences_per_sec": 3.0,
+      "latency_ms": 333.22,
+      "embed_dim": 4096,
+      "peak_memory_gb": 14.26,
+      "model_load_gb": 14.25,
+      "power_w": 34.78
+    },
+    {
+      "model": "intfloat/e5-mistral-7b-instruct",
+      "model_key": "e5-mistral-7b",
+      "batch_size": 8,
+      "sentences_per_sec": 18.8,
+      "latency_ms": 426.32,
+      "embed_dim": 4096,
+      "peak_memory_gb": 14.27,
+      "model_load_gb": 14.25,
+      "power_w": 53.44
+    },
+    {
+      "model": "intfloat/e5-mistral-7b-instruct",
+      "model_key": "e5-mistral-7b",
+      "batch_size": 32,
+      "sentences_per_sec": 30.8,
+      "latency_ms": 1039.1,
+      "embed_dim": 4096,
+      "peak_memory_gb": 14.32,
+      "model_load_gb": 14.25,
+      "power_w": 77.43
+    }
+  ],
+  "reranking": [],
+  "mteb": {},
+  "beir": {}
+}

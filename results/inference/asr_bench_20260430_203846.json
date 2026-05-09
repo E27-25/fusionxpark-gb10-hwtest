@@ -1,0 +1,12 @@
+[
+  {
+    "model": "openai/whisper-large-v3",
+    "model_key": "whisper-large-v3",
+    "error": "To support decoding audio data, please install 'torchcodec'."
+  },
+  {
+    "model": "openai/whisper-large-v3-turbo",
+    "model_key": "whisper-large-v3-turbo",
+    "error": "To support decoding audio data, please install 'torchcodec'."
+  }
+]

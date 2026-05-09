@@ -1,0 +1,18 @@
+{
+  "model": "Qwen/Qwen3-8B",
+  "timestamp": "2026-05-05T08:28:43.148311",
+  "backend": "hf",
+  "vllm_results": [],
+  "hf_results": [
+    {
+      "backend": "hf_generate",
+      "concurrent_users": 1,
+      "duration_sec": 65.5,
+      "total_requests": 5,
+      "throughput_tok_per_sec": 9.8,
+      "latency_p50_ms": 12941.7,
+      "latency_p95_ms": 13637.6,
+      "latency_mean_ms": 13079.8
+    }
+  ]
+}

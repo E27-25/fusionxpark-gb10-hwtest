@@ -1,0 +1,15 @@
+{
+  "experiment": "T21",
+  "model": "Qwen/Qwen3-8B",
+  "method": "grpo",
+  "group_size": 8,
+  "epsilon": 0.2,
+  "elapsed_min": 1003.7,
+  "steps": 200,
+  "final_loss": 7.71277609601384e-07,
+  "mean_reward": 0.3731250151991844,
+  "peak_memory_gb": 18.78,
+  "model_load_gb": 16.38,
+  "output_dir": "/home/student/Desktop/Test/models/T21_Qwen3-8B_grpo",
+  "timestamp": "2026-05-02T13:12:25.897142"
+}

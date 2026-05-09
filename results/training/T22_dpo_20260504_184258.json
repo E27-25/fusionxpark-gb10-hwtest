@@ -1,0 +1,14 @@
+{
+  "experiment": "T22",
+  "model": "Qwen/Qwen3-32B",
+  "method": "dpo",
+  "beta": 0.1,
+  "elapsed_min": 1702.6,
+  "steps": 150,
+  "final_loss": 0.6944623152414958,
+  "reward_margin": -0.005966189506580122,
+  "peak_memory_gb": 74.36,
+  "model_load_gb": 65.56,
+  "output_dir": "/home/student/Desktop/Test/models/T22_Qwen3-32B_dpo",
+  "timestamp": "2026-05-04T18:42:58.975588"
+}

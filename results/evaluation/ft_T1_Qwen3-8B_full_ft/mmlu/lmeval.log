@@ -1,0 +1,321 @@
+2026-05-07:16:09:25 WARNING  [config.evaluate_config:281] --limit SHOULD ONLY BE USED FOR TESTING. REAL METRICS SHOULD NOT BE COMPUTED USING LIMIT.
+2026-05-07:16:09:27 INFO     [_cli.run:376] Selected Tasks: ['mmlu']
+2026-05-07:16:09:28 INFO     [evaluator:211] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-05-07:16:09:28 INFO     [evaluator:236] Initializing hf model, with arguments: {'pretrained': '/home/student/Desktop/Test/models/T1_Qwen3-8B_full_ft', 'dtype': 'bfloat16', 'trust_remote_code': True}
+W0507 16:09:29.106000 3506159 torch/utils/_pytree.py:630] <enum 'KernelPreference'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+2026-05-07:16:09:29 INFO     [models.huggingface:161] Using device 'cuda:0'
+2026-05-07:16:09:30 INFO     [models.huggingface:423] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:0'}
+W0507 16:09:30.286000 3506159 torch/utils/_pytree.py:630] <enum 'ScaleCalculationMode'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:   0%|          | 1/399 [00:07<52:06,  7.86s/it]Loading weights:   1%|          | 2/399 [00:15<51:54,  7.84s/it]Loading weights:   3%|▎         | 13/399 [00:17<05:38,  1.14it/s]Loading weights:   4%|▍         | 17/399 [00:17<04:07,  1.55it/s]Loading weights:   5%|▍         | 18/399 [00:18<04:03,  1.56it/s]Loading weights:   5%|▍         | 19/399 [00:20<05:29,  1.15it/s]Loading weights:  12%|█▏        | 46/399 [00:27<02:06,  2.80it/s]Loading weights:  19%|█▉        | 76/399 [00:27<00:51,  6.28it/s]Loading weights:  20%|██        | 80/399 [00:28<00:47,  6.67it/s]Loading weights:  21%|██        | 84/399 [00:35<01:52,  2.81it/s]Loading weights:  28%|██▊       | 111/399 [00:35<00:48,  5.95it/s]Loading weights:  29%|██▉       | 116/399 [00:37<00:57,  4.95it/s]Loading weights:  30%|███       | 120/399 [00:40<01:14,  3.75it/s]Loading weights:  33%|███▎      | 130/399 [00:41<00:53,  5.04it/s]Loading weights:  33%|███▎      | 133/399 [00:41<00:49,  5.39it/s]Loading weights:  35%|███▌      | 141/399 [00:49<01:49,  2.36it/s]Loading weights:  44%|████▎     | 174/399 [00:55<00:59,  3.76it/s]Loading weights:  44%|████▍     | 176/399 [00:55<00:57,  3.87it/s]Loading weights:  51%|█████     | 202/399 [00:55<00:28,  6.93it/s]Loading weights:  51%|█████     | 204/399 [00:57<00:34,  5.72it/s]Loading weights:  52%|█████▏    | 208/399 [00:57<00:30,  6.18it/s]Loading weights:  53%|█████▎    | 210/399 [00:57<00:29,  6.30it/s]Loading weights:  53%|█████▎    | 212/399 [00:58<00:34,  5.43it/s]Loading weights:  54%|█████▎    | 214/399 [00:59<00:38,  4.81it/s]Loading weights:  54%|█████▍    | 215/399 [01:00<00:46,  3.98it/s]Loading weights:  55%|█████▍    | 219/399 [01:00<00:39,  4.61it/s]Loading weights:  56%|█████▌    | 223/399 [01:01<00:37,  4.65it/s]Loading weights:  56%|█████▋    | 225/399 [01:02<00:42,  4.07it/s]Loading weights:  57%|█████▋    | 226/399 [01:03<00:52,  3.30it/s]Loading weights:  58%|█████▊    | 230/399 [01:03<00:40,  4.20it/s]Loading weights:  59%|█████▊    | 234/399 [01:04<00:37,  4.45it/s]Loading weights:  59%|█████▉    | 236/399 [01:05<00:41,  3.95it/s]Loading weights:  59%|█████▉    | 237/399 [01:05<00:50,  3.21it/s]Loading weights:  60%|██████    | 241/399 [01:06<00:33,  4.70it/s]Loading weights:  61%|██████    | 243/399 [01:06<00:30,  5.17it/s]Loading weights:  61%|██████▏   | 245/399 [01:07<00:38,  4.03it/s]Loading weights:  62%|██████▏   | 247/399 [01:08<00:41,  3.63it/s]Loading weights:  62%|██████▏   | 248/399 [01:08<00:51,  2.91it/s]Loading weights:  63%|██████▎   | 252/399 [01:10<00:57,  2.55it/s]Loading weights:  66%|██████▌   | 263/399 [01:10<00:21,  6.45it/s]Loading weights:  66%|██████▋   | 265/399 [01:11<00:20,  6.61it/s]Loading weights:  67%|██████▋   | 268/399 [01:11<00:23,  5.59it/s]Loading weights:  67%|██████▋   | 269/399 [01:12<00:30,  4.26it/s]Loading weights:  68%|██████▊   | 270/399 [01:13<00:38,  3.35it/s]Loading weights:  68%|██████▊   | 272/399 [01:16<01:18,  1.63it/s]Loading weights:  68%|██████▊   | 273/399 [01:24<03:43,  1.77s/it]Loading weights:  80%|███████▉  | 318/399 [01:24<00:13,  6.11it/s]Loading weights:  81%|████████  | 323/399 [01:25<00:12,  5.88it/s]Loading weights:  82%|████████▏ | 327/399 [01:26<00:13,  5.27it/s]Loading weights:  83%|████████▎ | 330/399 [01:27<00:12,  5.64it/s]Loading weights:  83%|████████▎ | 333/399 [01:28<00:12,  5.19it/s]Loading weights:  84%|████████▍ | 336/399 [01:28<00:12,  5.11it/s]Loading weights:  85%|████████▌ | 340/399 [01:29<00:10,  5.57it/s]Loading weights:  86%|████████▋ | 345/399 [01:30<00:10,  5.08it/s]Loading weights:  87%|████████▋ | 347/399 [01:30<00:10,  4.74it/s]Loading weights:  87%|████████▋ | 349/399 [01:36<00:31,  1.61it/s]Loading weights:  88%|████████▊ | 350/399 [01:38<00:39,  1.24it/s]Loading weights:  99%|█████████▊| 394/399 [01:38<00:00,  9.43it/s]Loading weights: 100%|██████████| 399/399 [01:38<00:00,  4.04it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-05-07:16:12:50 INFO     [tasks:700] Selected tasks:
+2026-05-07:16:12:50 INFO     [tasks:703] Group: mmlu
+2026-05-07:16:12:50 INFO     [tasks:711]   Subgroup: mmlu_stem
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_abstract_algebra (mmlu/default/mmlu_abstract_algebra.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_anatomy (mmlu/default/mmlu_anatomy.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_astronomy (mmlu/default/mmlu_astronomy.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_college_biology (mmlu/default/mmlu_college_biology.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_college_chemistry (mmlu/default/mmlu_college_chemistry.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_college_computer_science (mmlu/default/mmlu_college_computer_science.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_college_mathematics (mmlu/default/mmlu_college_mathematics.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_college_physics (mmlu/default/mmlu_college_physics.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_computer_security (mmlu/default/mmlu_computer_security.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_conceptual_physics (mmlu/default/mmlu_conceptual_physics.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_electrical_engineering (mmlu/default/mmlu_electrical_engineering.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_elementary_mathematics (mmlu/default/mmlu_elementary_mathematics.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_high_school_biology (mmlu/default/mmlu_high_school_biology.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_high_school_chemistry (mmlu/default/mmlu_high_school_chemistry.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_high_school_computer_science (mmlu/default/mmlu_high_school_computer_science.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_high_school_mathematics (mmlu/default/mmlu_high_school_mathematics.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_high_school_physics (mmlu/default/mmlu_high_school_physics.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_high_school_statistics (mmlu/default/mmlu_high_school_statistics.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_machine_learning (mmlu/default/mmlu_machine_learning.yaml)
+2026-05-07:16:12:50 INFO     [tasks:711]   Subgroup: mmlu_other
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_business_ethics (mmlu/default/mmlu_business_ethics.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_clinical_knowledge (mmlu/default/mmlu_clinical_knowledge.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_college_medicine (mmlu/default/mmlu_college_medicine.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_global_facts (mmlu/default/mmlu_global_facts.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_human_aging (mmlu/default/mmlu_human_aging.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_management (mmlu/default/mmlu_management.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_marketing (mmlu/default/mmlu_marketing.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_medical_genetics (mmlu/default/mmlu_medical_genetics.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_miscellaneous (mmlu/default/mmlu_miscellaneous.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_nutrition (mmlu/default/mmlu_nutrition.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_professional_accounting (mmlu/default/mmlu_professional_accounting.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_professional_medicine (mmlu/default/mmlu_professional_medicine.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_virology (mmlu/default/mmlu_virology.yaml)
+2026-05-07:16:12:50 INFO     [tasks:711]   Subgroup: mmlu_social_sciences
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_econometrics (mmlu/default/mmlu_econometrics.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_high_school_geography (mmlu/default/mmlu_high_school_geography.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_high_school_government_and_politics (mmlu/default/mmlu_high_school_government_and_politics.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_high_school_macroeconomics (mmlu/default/mmlu_high_school_macroeconomics.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_high_school_microeconomics (mmlu/default/mmlu_high_school_microeconomics.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_high_school_psychology (mmlu/default/mmlu_high_school_psychology.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_human_sexuality (mmlu/default/mmlu_human_sexuality.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_professional_psychology (mmlu/default/mmlu_professional_psychology.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_public_relations (mmlu/default/mmlu_public_relations.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_security_studies (mmlu/default/mmlu_security_studies.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_sociology (mmlu/default/mmlu_sociology.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_us_foreign_policy (mmlu/default/mmlu_us_foreign_policy.yaml)
+2026-05-07:16:12:50 INFO     [tasks:711]   Subgroup: mmlu_humanities
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_formal_logic (mmlu/default/mmlu_formal_logic.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_high_school_european_history (mmlu/default/mmlu_high_school_european_history.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_high_school_us_history (mmlu/default/mmlu_high_school_us_history.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_high_school_world_history (mmlu/default/mmlu_high_school_world_history.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_international_law (mmlu/default/mmlu_international_law.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_jurisprudence (mmlu/default/mmlu_jurisprudence.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_logical_fallacies (mmlu/default/mmlu_logical_fallacies.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_moral_disputes (mmlu/default/mmlu_moral_disputes.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_moral_scenarios (mmlu/default/mmlu_moral_scenarios.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_philosophy (mmlu/default/mmlu_philosophy.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_prehistory (mmlu/default/mmlu_prehistory.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_professional_law (mmlu/default/mmlu_professional_law.yaml)
+2026-05-07:16:12:50 INFO     [tasks:691]     Task: mmlu_world_religions (mmlu/default/mmlu_world_religions.yaml)
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_abstract_algebra from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_anatomy from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_astronomy from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_college_biology from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_college_chemistry from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_college_computer_science from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_college_mathematics from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_college_physics from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_computer_security from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_conceptual_physics from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_electrical_engineering from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_elementary_mathematics from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_high_school_biology from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_high_school_chemistry from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_high_school_computer_science from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_high_school_mathematics from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_high_school_physics from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_high_school_statistics from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_machine_learning from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_business_ethics from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_clinical_knowledge from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_college_medicine from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_global_facts from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_human_aging from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_management from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_marketing from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_medical_genetics from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_miscellaneous from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_nutrition from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_professional_accounting from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_professional_medicine from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_virology from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_econometrics from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_high_school_geography from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_high_school_government_and_politics from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_high_school_macroeconomics from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_high_school_microeconomics from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_high_school_psychology from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_human_sexuality from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_professional_psychology from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_public_relations from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_security_studies from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_sociology from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_us_foreign_policy from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_formal_logic from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_high_school_european_history from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_high_school_us_history from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_high_school_world_history from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_international_law from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_jurisprudence from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_logical_fallacies from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_moral_disputes from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_moral_scenarios from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_philosophy from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_prehistory from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_professional_law from None to 5
+2026-05-07:16:12:50 WARNING  [evaluator:333] Overwriting default num_fewshot of mmlu_world_religions from None to 5
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_abstract_algebra on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 432.87it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_anatomy on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 452.62it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_astronomy on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 458.53it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_college_biology on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 455.65it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_college_chemistry on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 453.30it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_college_computer_science on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 461.24it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_college_mathematics on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 448.96it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_college_physics on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 455.48it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_computer_security on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 457.03it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_conceptual_physics on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 459.92it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_electrical_engineering on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 453.33it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_elementary_mathematics on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 456.03it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_high_school_biology on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 462.66it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_high_school_chemistry on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 459.58it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_high_school_computer_science on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 458.13it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_high_school_mathematics on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 457.82it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_high_school_physics on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 454.00it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_high_school_statistics on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 455.62it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_machine_learning on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 456.50it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_business_ethics on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 461.96it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_clinical_knowledge on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 456.99it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_college_medicine on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 456.00it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_global_facts on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 455.91it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_human_aging on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 461.25it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_management on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 455.29it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_marketing on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 457.93it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_medical_genetics on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 463.92it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_miscellaneous on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 455.32it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_nutrition on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 457.26it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_professional_accounting on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 460.27it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_professional_medicine on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 457.70it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_virology on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 461.89it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_econometrics on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 456.35it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_high_school_geography on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 464.01it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_high_school_government_and_politics on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 456.49it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_high_school_macroeconomics on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 463.46it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_high_school_microeconomics on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 455.37it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_high_school_psychology on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 463.96it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_human_sexuality on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 455.88it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_professional_psychology on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 462.95it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_public_relations on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 454.70it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_security_studies on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 464.49it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_sociology on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 455.21it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_us_foreign_policy on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 462.84it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_formal_logic on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 450.62it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_high_school_european_history on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 460.58it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_high_school_us_history on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 453.36it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_high_school_world_history on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 461.03it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_international_law on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 456.48it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_jurisprudence on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 458.80it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_logical_fallacies on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 451.16it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_moral_disputes on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 463.57it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_moral_scenarios on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 456.41it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_philosophy on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 461.09it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_prehistory on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 454.02it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_professional_law on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 464.07it/s]
+2026-05-07:16:12:50 INFO     [api.task:311] Building contexts for mmlu_world_religions on rank 0...
+  0%|          | 0/5 [00:00<?, ?it/s]100%|██████████| 5/5 [00:00<00:00, 451.93it/s]
+2026-05-07:16:12:50 INFO     [evaluator:584] Running loglikelihood requests
+Running loglikelihood requests:   0%|          | 0/1140 [00:00<?, ?it/s]Running loglikelihood requests:   0%|          | 1/1140 [00:43<13:42:15, 43.31s/it]Running loglikelihood requests:   3%|▎         | 33/1140 [01:14<34:43,  1.88s/it]  Running loglikelihood requests:   6%|▌         | 65/1140 [01:34<20:25,  1.14s/it]Running loglikelihood requests:   9%|▊         | 97/1140 [01:50<14:54,  1.17it/s]Running loglikelihood requests:  11%|█▏        | 129/1140 [02:03<11:28,  1.47it/s]Running loglikelihood requests:  14%|█▍        | 161/1140 [02:15<09:12,  1.77it/s]Running loglikelihood requests:  17%|█▋        | 193/1140 [02:25<07:34,  2.08it/s]Running loglikelihood requests:  20%|█▉        | 225/1140 [02:34<06:23,  2.39it/s]Running loglikelihood requests:  23%|██▎       | 257/1140 [02:43<05:33,  2.65it/s]Running loglikelihood requests:  25%|██▌       | 289/1140 [02:52<04:54,  2.89it/s]Running loglikelihood requests:  28%|██▊       | 321/1140 [03:01<04:23,  3.11it/s]Running loglikelihood requests:  31%|███       | 353/1140 [03:09<03:58,  3.30it/s]Running loglikelihood requests:  34%|███▍      | 385/1140 [03:17<03:37,  3.47it/s]Running loglikelihood requests:  37%|███▋      | 417/1140 [03:25<03:20,  3.61it/s]Running loglikelihood requests:  39%|███▉      | 449/1140 [03:33<03:04,  3.75it/s]Running loglikelihood requests:  42%|████▏     | 481/1140 [03:41<02:50,  3.87it/s]Running loglikelihood requests:  45%|████▌     | 513/1140 [03:48<02:37,  3.98it/s]Running loglikelihood requests:  48%|████▊     | 545/1140 [03:55<02:24,  4.12it/s]Running loglikelihood requests:  51%|█████     | 577/1140 [04:02<02:12,  4.24it/s]Running loglikelihood requests:  53%|█████▎    | 609/1140 [04:09<02:01,  4.37it/s]Running loglikelihood requests:  56%|█████▌    | 641/1140 [04:16<01:50,  4.50it/s]Running loglikelihood requests:  59%|█████▉    | 673/1140 [04:22<01:40,  4.63it/s]Running loglikelihood requests:  62%|██████▏   | 705/1140 [04:29<01:31,  4.75it/s]Running loglikelihood requests:  65%|██████▍   | 737/1140 [04:35<01:23,  4.85it/s]Running loglikelihood requests:  67%|██████▋   | 769/1140 [04:41<01:14,  5.01it/s]Running loglikelihood requests:  70%|███████   | 801/1140 [04:47<01:05,  5.16it/s]Running loglikelihood requests:  73%|███████▎  | 833/1140 [04:52<00:58,  5.29it/s]Running loglikelihood requests:  76%|███████▌  | 865/1140 [04:58<00:50,  5.47it/s]Running loglikelihood requests:  79%|███████▊  | 897/1140 [05:03<00:43,  5.64it/s]Running loglikelihood requests:  81%|████████▏ | 929/1140 [05:08<00:36,  5.79it/s]Running loglikelihood requests:  84%|████████▍ | 961/1140 [05:13<00:29,  6.02it/s]Running loglikelihood requests:  87%|████████▋ | 993/1140 [05:18<00:23,  6.26it/s]Running loglikelihood requests:  90%|████████▉ | 1025/1140 [05:22<00:17,  6.45it/s]Running loglikelihood requests:  93%|█████████▎| 1057/1140 [05:27<00:12,  6.64it/s]Running loglikelihood requests:  96%|█████████▌| 1089/1140 [05:31<00:07,  6.91it/s]Running loglikelihood requests:  98%|█████████▊| 1121/1140 [05:33<00:02,  8.12it/s]Running loglikelihood requests: 100%|██████████| 1140/1140 [05:33<00:00,  3.42it/s]
+2026-05-07:16:18:26 INFO     [loggers.evaluation_tracker:247] Saving results aggregated
+hf ({'pretrained': '/home/student/Desktop/Test/models/T1_Qwen3-8B_full_ft', 'dtype': 'bfloat16'}), gen_kwargs: ({}), limit: 5.0, num_fewshot: 5, batch_size: 8
+|                 Tasks                 |Version|Filter|n-shot|Metric|   |Value |   |Stderr|
+|---------------------------------------|------:|------|-----:|------|---|-----:|---|-----:|
+|mmlu                                   |      2|none  |      |acc   |↑  |0.8035|±  |0.0237|
+| - humanities                          |      2|none  |      |acc   |↑  |0.8000|±  |0.0462|
+|  - formal_logic                       |      1|none  |     5|acc   |↑  |0.4000|±  |0.2449|
+|  - high_school_european_history       |      1|none  |     5|acc   |↑  |1.0000|±  |0.0000|
+|  - high_school_us_history             |      1|none  |     5|acc   |↑  |1.0000|±  |0.0000|
+|  - high_school_world_history          |      1|none  |     5|acc   |↑  |1.0000|±  |0.0000|
+|  - international_law                  |      1|none  |     5|acc   |↑  |1.0000|±  |0.0000|
+|  - jurisprudence                      |      1|none  |     5|acc   |↑  |0.4000|±  |0.2449|
+|  - logical_fallacies                  |      1|none  |     5|acc   |↑  |0.8000|±  |0.2000|
+|  - moral_disputes                     |      1|none  |     5|acc   |↑  |0.8000|±  |0.2000|
+|  - moral_scenarios                    |      1|none  |     5|acc   |↑  |0.6000|±  |0.2449|
+|  - philosophy                         |      1|none  |     5|acc   |↑  |1.0000|±  |0.0000|
+|  - prehistory                         |      1|none  |     5|acc   |↑  |0.8000|±  |0.2000|
+|  - professional_law                   |      1|none  |     5|acc   |↑  |0.6000|±  |0.2449|
+|  - world_religions                    |      1|none  |     5|acc   |↑  |1.0000|±  |0.0000|
+| - other                               |      2|none  |      |acc   |↑  |0.7846|±  |0.0510|
+|  - business_ethics                    |      1|none  |     5|acc   |↑  |0.8000|±  |0.2000|
+|  - clinical_knowledge                 |      1|none  |     5|acc   |↑  |0.8000|±  |0.2000|
+|  - college_medicine                   |      1|none  |     5|acc   |↑  |1.0000|±  |0.0000|
+|  - global_facts                       |      1|none  |     5|acc   |↑  |0.6000|±  |0.2449|
+|  - human_aging                        |      1|none  |     5|acc   |↑  |1.0000|±  |0.0000|
+|  - management                         |      1|none  |     5|acc   |↑  |0.8000|±  |0.2000|
+|  - marketing                          |      1|none  |     5|acc   |↑  |0.4000|±  |0.2449|
+|  - medical_genetics                   |      1|none  |     5|acc   |↑  |1.0000|±  |0.0000|
+|  - miscellaneous                      |      1|none  |     5|acc   |↑  |0.8000|±  |0.2000|
+|  - nutrition                          |      1|none  |     5|acc   |↑  |1.0000|±  |0.0000|
+|  - professional_accounting            |      1|none  |     5|acc   |↑  |0.6000|±  |0.2449|
+|  - professional_medicine              |      1|none  |     5|acc   |↑  |0.8000|±  |0.2000|
+|  - virology                           |      1|none  |     5|acc   |↑  |0.6000|±  |0.2449|
+| - social sciences                     |      2|none  |      |acc   |↑  |0.8667|±  |0.0441|
+|  - econometrics                       |      1|none  |     5|acc   |↑  |1.0000|±  |0.0000|
+|  - high_school_geography              |      1|none  |     5|acc   |↑  |0.8000|±  |0.2000|
+|  - high_school_government_and_politics|      1|none  |     5|acc   |↑  |1.0000|±  |0.0000|
+|  - high_school_macroeconomics         |      1|none  |     5|acc   |↑  |0.6000|±  |0.2449|
+|  - high_school_microeconomics         |      1|none  |     5|acc   |↑  |0.8000|±  |0.2000|
+|  - high_school_psychology             |      1|none  |     5|acc   |↑  |1.0000|±  |0.0000|
+|  - human_sexuality                    |      1|none  |     5|acc   |↑  |0.8000|±  |0.2000|
+|  - professional_psychology            |      1|none  |     5|acc   |↑  |1.0000|±  |0.0000|
+|  - public_relations                   |      1|none  |     5|acc   |↑  |1.0000|±  |0.0000|
+|  - security_studies                   |      1|none  |     5|acc   |↑  |0.6000|±  |0.2449|
+|  - sociology                          |      1|none  |     5|acc   |↑  |1.0000|±  |0.0000|
+|  - us_foreign_policy                  |      1|none  |     5|acc   |↑  |0.8000|±  |0.2000|
+| - stem                                |      2|none  |      |acc   |↑  |0.7789|±  |0.0453|
+|  - abstract_algebra                   |      1|none  |     5|acc   |↑  |0.6000|±  |0.2449|
+|  - anatomy                            |      1|none  |     5|acc   |↑  |0.8000|±  |0.2000|
+|  - astronomy                          |      1|none  |     5|acc   |↑  |1.0000|±  |0.0000|
+|  - college_biology                    |      1|none  |     5|acc   |↑  |0.8000|±  |0.2000|
+|  - college_chemistry                  |      1|none  |     5|acc   |↑  |0.6000|±  |0.2449|
+|  - college_computer_science           |      1|none  |     5|acc   |↑  |0.8000|±  |0.2000|
+|  - college_mathematics                |      1|none  |     5|acc   |↑  |0.8000|±  |0.2000|
+|  - college_physics                    |      1|none  |     5|acc   |↑  |0.6000|±  |0.2449|
+|  - computer_security                  |      1|none  |     5|acc   |↑  |0.6000|±  |0.2449|
+|  - conceptual_physics                 |      1|none  |     5|acc   |↑  |0.8000|±  |0.2000|
+|  - electrical_engineering             |      1|none  |     5|acc   |↑  |0.8000|±  |0.2000|
+|  - elementary_mathematics             |      1|none  |     5|acc   |↑  |0.8000|±  |0.2000|
+|  - high_school_biology                |      1|none  |     5|acc   |↑  |1.0000|±  |0.0000|
+|  - high_school_chemistry              |      1|none  |     5|acc   |↑  |0.8000|±  |0.2000|
+|  - high_school_computer_science       |      1|none  |     5|acc   |↑  |1.0000|±  |0.0000|
+|  - high_school_mathematics            |      1|none  |     5|acc   |↑  |0.8000|±  |0.2000|
+|  - high_school_physics                |      1|none  |     5|acc   |↑  |0.6000|±  |0.2449|
+|  - high_school_statistics             |      1|none  |     5|acc   |↑  |0.8000|±  |0.2000|
+|  - machine_learning                   |      1|none  |     5|acc   |↑  |0.8000|±  |0.2000|
+
+|      Groups      |Version|Filter|n-shot|Metric|   |Value |   |Stderr|
+|------------------|------:|------|------|------|---|-----:|---|-----:|
+|mmlu              |      2|none  |      |acc   |↑  |0.8035|±  |0.0237|
+| - humanities     |      2|none  |      |acc   |↑  |0.8000|±  |0.0462|
+| - other          |      2|none  |      |acc   |↑  |0.7846|±  |0.0510|
+| - social sciences|      2|none  |      |acc   |↑  |0.8667|±  |0.0441|
+| - stem           |      2|none  |      |acc   |↑  |0.7789|±  |0.0453|
+

@@ -1,0 +1,115 @@
+{
+  "embedding": [
+    {
+      "model": "BAAI/bge-m3",
+      "model_key": "bge-m3",
+      "batch_size": 1,
+      "sentences_per_sec": 8.9,
+      "latency_ms": 112.17,
+      "embed_dim": 1024,
+      "pooling": "mean",
+      "peak_memory_gb": 1.17,
+      "model_load_gb": 1.14,
+      "power_w": 30.98
+    },
+    {
+      "model": "BAAI/bge-m3",
+      "model_key": "bge-m3",
+      "batch_size": 8,
+      "sentences_per_sec": 71.4,
+      "latency_ms": 112.05,
+      "embed_dim": 1024,
+      "pooling": "mean",
+      "peak_memory_gb": 1.17,
+      "model_load_gb": 1.14,
+      "power_w": 36.26
+    },
+    {
+      "model": "BAAI/bge-m3",
+      "model_key": "bge-m3",
+      "batch_size": 32,
+      "sentences_per_sec": 234.6,
+      "latency_ms": 136.42,
+      "embed_dim": 1024,
+      "pooling": "mean",
+      "peak_memory_gb": 1.18,
+      "model_load_gb": 1.14,
+      "power_w": 48.62
+    },
+    {
+      "model": "intfloat/e5-large-v2",
+      "model_key": "e5-large-v2",
+      "batch_size": 1,
+      "sentences_per_sec": 8.9,
+      "latency_ms": 112.22,
+      "embed_dim": 1024,
+      "pooling": "mean",
+      "peak_memory_gb": 1.17,
+      "model_load_gb": 0.7,
+      "power_w": 30.4
+    },
+    {
+      "model": "intfloat/e5-large-v2",
+      "model_key": "e5-large-v2",
+      "batch_size": 8,
+      "sentences_per_sec": 71.0,
+      "latency_ms": 112.63,
+      "embed_dim": 1024,
+      "pooling": "mean",
+      "peak_memory_gb": 0.71,
+      "model_load_gb": 0.7,
+      "power_w": 34.07
+    },
+    {
+      "model": "intfloat/e5-large-v2",
+      "model_key": "e5-large-v2",
+      "batch_size": 32,
+      "sentences_per_sec": 246.2,
+      "latency_ms": 129.96,
+      "embed_dim": 1024,
+      "pooling": "mean",
+      "peak_memory_gb": 0.72,
+      "model_load_gb": 0.7,
+      "power_w": 47.24
+    },
+    {
+      "model": "Qwen/Qwen3-Embedding-0.6B",
+      "model_key": "qwen3-embed-0.6b",
+      "batch_size": 1,
+      "sentences_per_sec": 6.6,
+      "latency_ms": 151.77,
+      "embed_dim": 1024,
+      "pooling": "last-token",
+      "peak_memory_gb": 1.23,
+      "model_load_gb": 1.23,
+      "power_w": 30.33
+    },
+    {
+      "model": "Qwen/Qwen3-Embedding-0.6B",
+      "model_key": "qwen3-embed-0.6b",
+      "batch_size": 8,
+      "sentences_per_sec": 51.9,
+      "latency_ms": 154.02,
+      "embed_dim": 1024,
+      "pooling": "last-token",
+      "peak_memory_gb": 1.25,
+      "model_load_gb": 1.23,
+      "power_w": 34.17
+    },
+    {
+      "model": "Qwen/Qwen3-Embedding-0.6B",
+      "model_key": "qwen3-embed-0.6b",
+      "batch_size": 32,
+      "sentences_per_sec": 182.3,
+      "latency_ms": 175.51,
+      "embed_dim": 1024,
+      "pooling": "last-token",
+      "peak_memory_gb": 1.33,
+      "model_load_gb": 1.23,
+      "power_w": 47.28
+    }
+  ],
+  "reranking": [],
+  "mteb": {},
+  "beir": {}
+}

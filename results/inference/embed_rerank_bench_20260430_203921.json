@@ -1,0 +1,73 @@
+{
+  "embedding": [
+    {
+      "model": "BAAI/bge-m3",
+      "model_key": "bge-m3",
+      "batch_size": 1,
+      "sentences_per_sec": 19.5,
+      "latency_ms": 51.39,
+      "embed_dim": 1024,
+      "peak_memory_gb": 1.17,
+      "model_load_gb": 1.14,
+      "power_w": 21.1
+    },
+    {
+      "model": "BAAI/bge-m3",
+      "model_key": "bge-m3",
+      "batch_size": 8,
+      "sentences_per_sec": 155.7,
+      "latency_ms": 51.39,
+      "embed_dim": 1024,
+      "peak_memory_gb": 1.17,
+      "model_load_gb": 1.14,
+      "power_w": 33.98
+    },
+    {
+      "model": "BAAI/bge-m3",
+      "model_key": "bge-m3",
+      "batch_size": 32,
+      "sentences_per_sec": 526.4,
+      "latency_ms": 60.79,
+      "embed_dim": 1024,
+      "peak_memory_gb": 1.18,
+      "model_load_gb": 1.14,
+      "power_w": 61.91
+    },
+    {
+      "model": "intfloat/e5-large-v2",
+      "model_key": "e5-large-v2",
+      "batch_size": 1,
+      "sentences_per_sec": 19.5,
+      "latency_ms": 51.4,
+      "embed_dim": 1024,
+      "peak_memory_gb": 1.17,
+      "model_load_gb": 0.7,
+      "power_w": 21.32
+    },
+    {
+      "model": "intfloat/e5-large-v2",
+      "model_key": "e5-large-v2",
+      "batch_size": 8,
+      "sentences_per_sec": 154.3,
+      "latency_ms": 51.83,
+      "embed_dim": 1024,
+      "peak_memory_gb": 0.71,
+      "model_load_gb": 0.7,
+      "power_w": 29.12
+    },
+    {
+      "model": "intfloat/e5-large-v2",
+      "model_key": "e5-large-v2",
+      "batch_size": 32,
+      "sentences_per_sec": 549.5,
+      "latency_ms": 58.24,
+      "embed_dim": 1024,
+      "peak_memory_gb": 0.72,
+      "model_load_gb": 0.7,
+      "power_w": 58.65
+    }
+  ],
+  "reranking": [],
+  "mteb": {},
+  "beir": {}
+}

@@ -1,0 +1,7 @@
+{
+  "experiment": "T3",
+  "model": "Qwen/Qwen3-8B",
+  "method": "lora_r16",
+  "error": "SFTTrainer.__init__() got an unexpected keyword argument 'tokenizer'",
+  "timestamp": "2026-05-01T02:40:41.961870"
+}

@@ -1,0 +1,7 @@
+{
+  "experiment": "T3",
+  "model": "Qwen/Qwen3-8B",
+  "method": "lora_r16",
+  "error": "Found an incompatible version of torchao. Found version 0.9.0, but only versions above 0.16.0 are supported",
+  "timestamp": "2026-05-01T02:26:32.845136"
+}

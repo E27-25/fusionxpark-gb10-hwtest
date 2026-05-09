@@ -1,0 +1,148 @@
+{
+  "32b": [
+    {
+      "model": "Qwen/Qwen3-32B",
+      "precision": "BF16",
+      "bytes_per_param": 2.0,
+      "est_weight_gb": 64.0,
+      "load_mem_gb": 65.52,
+      "status": "ok",
+      "b1_short": {
+        "batch": 1,
+        "in_tokens": 10,
+        "out_tokens": 200,
+        "tok_per_sec": 2.43,
+        "ttft_ms": 82371.3,
+        "avg_latency_s": 82.279,
+        "peak_mem_gb": 65.61,
+        "bw_util_pct": 116.1
+      },
+      "b8_short": {
+        "batch": 8,
+        "in_tokens": 10,
+        "out_tokens": 200,
+        "tok_per_sec": 6.51,
+        "ttft_ms": 245689.7,
+        "avg_latency_s": 245.789,
+        "peak_mem_gb": 66.02,
+        "bw_util_pct": 310.9
+      },
+      "b1_medium": {
+        "batch": 1,
+        "in_tokens": 39,
+        "out_tokens": 200,
+        "tok_per_sec": 2.43,
+        "ttft_ms": 82293.9,
+        "avg_latency_s": 82.294,
+        "peak_mem_gb": 65.62,
+        "bw_util_pct": 116.1
+      },
+      "b8_medium": {
+        "batch": 8,
+        "in_tokens": 39,
+        "out_tokens": 197,
+        "tok_per_sec": 6.47,
+        "ttft_ms": 243881.5,
+        "avg_latency_s": 243.765,
+        "peak_mem_gb": 66.07,
+        "bw_util_pct": 309.0
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-32B",
+      "precision": "INT8",
+      "bytes_per_param": 1.0,
+      "est_weight_gb": 32.0,
+      "load_mem_gb": 34.38,
+      "status": "ok",
+      "b1_short": {
+        "batch": 1,
+        "in_tokens": 10,
+        "out_tokens": 200,
+        "tok_per_sec": 4.72,
+        "ttft_ms": 42459.0,
+        "avg_latency_s": 42.397,
+        "peak_mem_gb": 34.51,
+        "bw_util_pct": 112.7
+      },
+      "b8_short": {
+        "batch": 8,
+        "in_tokens": 10,
+        "out_tokens": 200,
+        "tok_per_sec": 34.01,
+        "ttft_ms": 47074.0,
+        "avg_latency_s": 47.047,
+        "peak_mem_gb": 34.86,
+        "bw_util_pct": 812.2
+      },
+      "b1_medium": {
+        "batch": 1,
+        "in_tokens": 39,
+        "out_tokens": 200,
+        "tok_per_sec": 4.7,
+        "ttft_ms": 42539.7,
+        "avg_latency_s": 42.56,
+        "peak_mem_gb": 34.61,
+        "bw_util_pct": 112.2
+      },
+      "b8_medium": {
+        "batch": 8,
+        "in_tokens": 39,
+        "out_tokens": 200,
+        "tok_per_sec": 33.81,
+        "ttft_ms": 47346.1,
+        "avg_latency_s": 47.328,
+        "peak_mem_gb": 34.94,
+        "bw_util_pct": 807.4
+      }
+    },
+    {
+      "model": "Qwen/Qwen3-32B",
+      "precision": "NF4",
+      "bytes_per_param": 0.5,
+      "est_weight_gb": 16.0,
+      "load_mem_gb": 19.27,
+      "status": "ok",
+      "b1_short": {
+        "batch": 1,
+        "in_tokens": 10,
+        "out_tokens": 200,
+        "tok_per_sec": 7.6,
+        "ttft_ms": 26276.6,
+        "avg_latency_s": 26.322,
+        "peak_mem_gb": 19.55,
+        "bw_util_pct": 90.7
+      },
+      "b8_short": {
+        "batch": 8,
+        "in_tokens": 10,
+        "out_tokens": 200,
+        "tok_per_sec": 5.33,
+        "ttft_ms": 299605.8,
+        "avg_latency_s": 300.092,
+        "peak_mem_gb": 19.99,
+        "bw_util_pct": 63.6
+      },
+      "b1_medium": {
+        "batch": 1,
+        "in_tokens": 39,
+        "out_tokens": 200,
+        "tok_per_sec": 7.57,
+        "ttft_ms": 26435.0,
+        "avg_latency_s": 26.429,
+        "peak_mem_gb": 19.56,
+        "bw_util_pct": 90.4
+      },
+      "b8_medium": {
+        "batch": 8,
+        "in_tokens": 39,
+        "out_tokens": 200,
+        "tok_per_sec": 5.3,
+        "ttft_ms": 302185.9,
+        "avg_latency_s": 302.088,
+        "peak_mem_gb": 20.05,
+        "bw_util_pct": 63.3
+      }
+    }
+  ]
+}

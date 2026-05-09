@@ -1,0 +1,7 @@
+{
+  "experiment": "T11",
+  "model": "deepseek-ai/DeepSeek-V2-Lite",
+  "method": "lora_r32",
+  "error": "cannot import name 'is_torch_fx_available' from 'transformers.utils.import_utils' (/home/student/.local/lib/python3.12/site-packages/transformers/utils/import_utils.py)",
+  "timestamp": "2026-05-01T20:12:18.561704"
+}

@@ -1,0 +1,14 @@
+{
+  "experiment": "T20",
+  "model": "Qwen/Qwen3-8B",
+  "method": "dpo",
+  "beta": 0.1,
+  "elapsed_min": 831.6,
+  "steps": 300,
+  "final_loss": 0.6926141738891601,
+  "reward_margin": 0.003486106885247864,
+  "peak_memory_gb": 29.33,
+  "model_load_gb": 16.42,
+  "output_dir": "/home/student/Desktop/Test/models/T20_Qwen3-8B_dpo",
+  "timestamp": "2026-05-03T14:12:03.408586"
+}

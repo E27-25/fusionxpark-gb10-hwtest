@@ -1,0 +1,13 @@
+{
+  "experiment": "T14",
+  "model": "openai/whisper-large-v3",
+  "method": "full_ft",
+  "elapsed_min": 119.3,
+  "steps": 500,
+  "final_loss": 0.47852039337158203,
+  "final_wer": null,
+  "peak_memory_gb": 19.53,
+  "model_load_gb": 3.09,
+  "output_dir": "/home/student/Desktop/Test/models/T14_whisper-large-v3_full_ft",
+  "timestamp": "2026-05-06T07:02:31.317211"
+}

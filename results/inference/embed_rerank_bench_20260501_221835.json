@@ -1,0 +1,40 @@
+{
+  "embedding": [],
+  "reranking": [
+    {
+      "model": "Qwen/Qwen3-VL-Reranker-8B",
+      "model_key": "qwen3-vl-rerank-8b",
+      "batch_size": 1,
+      "pairs_per_sec": 1.3,
+      "latency_ms": 784.85,
+      "sample_score_mean": -3.7188,
+      "peak_memory_gb": 17.59,
+      "model_load_gb": 17.53,
+      "power_w": 38.16
+    },
+    {
+      "model": "Qwen/Qwen3-VL-Reranker-8B",
+      "model_key": "qwen3-vl-rerank-8b",
+      "batch_size": 4,
+      "pairs_per_sec": 3.7,
+      "latency_ms": 1092.41,
+      "sample_score_mean": -2.6094,
+      "peak_memory_gb": 17.68,
+      "model_load_gb": 17.53,
+      "power_w": 50.38
+    },
+    {
+      "model": "Qwen/Qwen3-VL-Reranker-8B",
+      "model_key": "qwen3-vl-rerank-8b",
+      "batch_size": 8,
+      "pairs_per_sec": 3.8,
+      "latency_ms": 2126.86,
+      "sample_score_mean": -3.3711,
+      "peak_memory_gb": 17.81,
+      "model_load_gb": 17.53,
+      "power_w": 54.88
+    }
+  ],
+  "mteb": {},
+  "beir": {}
+}

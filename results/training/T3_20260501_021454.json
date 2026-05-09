@@ -1,0 +1,7 @@
+{
+  "experiment": "T3",
+  "model": "Qwen/Qwen3-8B",
+  "method": "lora_r16",
+  "error": "Could not import module 'TrainingArguments'. Are this object's requirements defined correctly?",
+  "timestamp": "2026-05-01T02:14:54.369467"
+}

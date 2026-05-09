@@ -1,0 +1,17 @@
+[
+  {
+    "model": "Qwen/Qwen2-Audio-7B-Instruct",
+    "model_key": "qwen2-audio-7b",
+    "n_samples": 50,
+    "wer_pct": 12.79,
+    "cer_pct": 8.69,
+    "mean_rtf": 0.6004,
+    "rtf_stdev": 0.147,
+    "rtf_p95": 0.8899,
+    "peak_memory_gb": 17.38,
+    "model_load_gb": 16.79,
+    "power_w": null,
+    "temp_c": null,
+    "tokens_per_watt": null
+  }
+]

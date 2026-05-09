@@ -1,0 +1,19 @@
+{
+  "think": {
+    "accuracy": 0.78,
+    "correct": 39,
+    "total": 50,
+    "avg_think_tokens": 899.74,
+    "elapsed_sec": 6623.3365614414215
+  },
+  "nothink": {
+    "accuracy": 0.78,
+    "correct": 39,
+    "total": 50,
+    "avg_think_tokens": 1.0,
+    "elapsed_sec": 1486.2600474357605
+  },
+  "model": "Qwen/Qwen3-8B",
+  "n_samples": 50,
+  "dataset": "openai/gsm8k test"
+}

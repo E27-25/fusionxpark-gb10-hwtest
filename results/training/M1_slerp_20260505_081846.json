@@ -1,0 +1,14 @@
+{
+  "experiment": "M1",
+  "method": "slerp",
+  "slerp_t": 0.5,
+  "base_model": "Qwen/Qwen3-8B",
+  "sft_model": "/home/student/Desktop/Test/models/T3_Qwen3-8B_sft_merged",
+  "output_dir": "/home/student/Desktop/Test/models/M1_Qwen3-8B_slerp_sft",
+  "slerp_time_s": 10.2,
+  "timestamp": "2026-05-05T08:18:46.129215",
+  "status": "ok",
+  "memory_gb": 16.38,
+  "gen_sec": 11.84,
+  "sample_output": " Can you give an example of each?\n\nSupervised learning is a type of machine learning where the model is trained on a labeled dataset, meaning that each training example is paired with an output. The model learns to map inputs to outputs by finding patterns in the data. An example of supervised learn"
+}

@@ -1,0 +1,167 @@
+[08:31:37] === Phase 3: Standard Evaluation ===
+[08:31:38] --- Base model: Qwen3-8B ---
+[08:31:38] Evaluating: qwen3-8b-base (Qwen/Qwen3-8B)
+[11:56:45] === Phase 3: Standard Evaluation ===
+[11:56:45] --- Base model: Qwen3-8B ---
+[11:56:45] Evaluating: qwen3-8b-base (Qwen/Qwen3-8B)
+[11:06:47] === Phase 3: Standard Evaluation (v2 — per-task saves) ===
+[11:06:47] --- Base model: Qwen3-8B ---
+[11:06:47] Evaluating: qwen3-8b-base
+[11:06:47]   qwen3-8b-base: loglikelihood tasks (batch=8)
+[15:02:20] === Phase 3: Standard Evaluation (v2 — per-task saves) ===
+[15:02:20] --- Base model: Qwen3-8B ---
+[15:02:21] Evaluating: qwen3-8b-base
+[15:02:21]   qwen3-8b-base: LL tasks limit=100 (batch=8, ~36 min)
+  ✓ qwen3-8b-base LL tasks done
+[15:18:37]   qwen3-8b-base: MMLU limit=5/subtask (batch=8, ~23 min)
+  ✓ qwen3-8b-base MMLU done
+[15:27:49]   qwen3-8b-base: gsm8k (batch=1, limit=100, ~10 min)
+  ✓ qwen3-8b-base GSM8K done
+  ✓ qwen3-8b-base all done
+[15:53:16] --- Fine-tuned checkpoints ---
+[15:53:16] Evaluating full model: T1_Qwen3-8B_full_ft
+[15:53:16] Evaluating: ft_T1_Qwen3-8B_full_ft
+[15:53:16]   ft_T1_Qwen3-8B_full_ft: LL tasks limit=100 (batch=8, ~36 min)
+  ✓ ft_T1_Qwen3-8B_full_ft LL tasks done
+[16:09:25]   ft_T1_Qwen3-8B_full_ft: MMLU limit=5/subtask (batch=8, ~23 min)
+  ✓ ft_T1_Qwen3-8B_full_ft MMLU done
+[16:18:27]   ft_T1_Qwen3-8B_full_ft: gsm8k (batch=1, limit=100, ~10 min)
+  ✓ ft_T1_Qwen3-8B_full_ft GSM8K done
+  ✓ ft_T1_Qwen3-8B_full_ft all done
+[16:42:51] Evaluating full model: T2_Mistral-7B-Instruct-v0.3_full_ft
+[16:42:51] Evaluating: ft_T2_Mistral-7B-Instruct-v0.3_full_ft
+[16:42:51]   ft_T2_Mistral-7B-Instruct-v0.3_full_ft: LL tasks limit=100 (batch=8, ~36 min)
+  ✓ ft_T2_Mistral-7B-Instruct-v0.3_full_ft LL tasks done
+[17:00:30]   ft_T2_Mistral-7B-Instruct-v0.3_full_ft: MMLU limit=5/subtask (batch=8, ~23 min)
+  ✓ ft_T2_Mistral-7B-Instruct-v0.3_full_ft MMLU done
+[17:09:53]   ft_T2_Mistral-7B-Instruct-v0.3_full_ft: gsm8k (batch=1, limit=100, ~10 min)
+  ✓ ft_T2_Mistral-7B-Instruct-v0.3_full_ft GSM8K done
+  ✓ ft_T2_Mistral-7B-Instruct-v0.3_full_ft all done
+[17:30:31] Evaluating PEFT: T3_Qwen3-8B_lora_r16 (base=Qwen/Qwen3-8B)
+[17:30:31] Evaluating: ft_T3_Qwen3-8B_lora_r16
+[17:30:31]   ft_T3_Qwen3-8B_lora_r16: LL tasks limit=100 (batch=8, ~36 min)
+  ✓ ft_T3_Qwen3-8B_lora_r16 LL tasks done
+[17:48:28]   ft_T3_Qwen3-8B_lora_r16: MMLU limit=5/subtask (batch=8, ~23 min)
+  ✓ ft_T3_Qwen3-8B_lora_r16 MMLU done
+[17:58:36]   ft_T3_Qwen3-8B_lora_r16: gsm8k (batch=1, limit=100, ~10 min)
+  ✓ ft_T3_Qwen3-8B_lora_r16 GSM8K done
+  ✓ ft_T3_Qwen3-8B_lora_r16 all done
+[18:25:12] Evaluating full model: T3_Qwen3-8B_sft_merged
+[18:25:12] Evaluating: ft_T3_Qwen3-8B_sft_merged
+[18:25:12]   ft_T3_Qwen3-8B_sft_merged: LL tasks limit=100 (batch=8, ~36 min)
+  ✓ ft_T3_Qwen3-8B_sft_merged LL tasks done
+[18:41:11]   ft_T3_Qwen3-8B_sft_merged: MMLU limit=5/subtask (batch=8, ~23 min)
+  ✓ ft_T3_Qwen3-8B_sft_merged MMLU done
+[18:50:23]   ft_T3_Qwen3-8B_sft_merged: gsm8k (batch=1, limit=100, ~10 min)
+  ✓ ft_T3_Qwen3-8B_sft_merged GSM8K done
+  ✓ ft_T3_Qwen3-8B_sft_merged all done
+[19:14:22] Evaluating PEFT: T4_Mistral-7B-Instruct-v0.3_lora_r16 (base=mistralai/Mistral-7B-Instruct-v0.3)
+[19:14:22] Evaluating: ft_T4_Mistral-7B-Instruct-v0.3_lora_r16
+[19:14:22]   ft_T4_Mistral-7B-Instruct-v0.3_lora_r16: LL tasks limit=100 (batch=8, ~36 min)
+  ✓ ft_T4_Mistral-7B-Instruct-v0.3_lora_r16 LL tasks done
+[19:34:41]   ft_T4_Mistral-7B-Instruct-v0.3_lora_r16: MMLU limit=5/subtask (batch=8, ~23 min)
+  ✓ ft_T4_Mistral-7B-Instruct-v0.3_lora_r16 MMLU done
+[19:45:36]   ft_T4_Mistral-7B-Instruct-v0.3_lora_r16: gsm8k (batch=1, limit=100, ~10 min)
+  ✓ ft_T4_Mistral-7B-Instruct-v0.3_lora_r16 GSM8K done
+  ✓ ft_T4_Mistral-7B-Instruct-v0.3_lora_r16 all done
+[20:10:38] Evaluating PEFT: T5_Qwen3-8B_lora_r64 (base=Qwen/Qwen3-8B)
+[20:10:38] Evaluating: ft_T5_Qwen3-8B_lora_r64
+[20:10:38]   ft_T5_Qwen3-8B_lora_r64: LL tasks limit=100 (batch=8, ~36 min)
+  ✓ ft_T5_Qwen3-8B_lora_r64 LL tasks done
+[20:29:24]   ft_T5_Qwen3-8B_lora_r64: MMLU limit=5/subtask (batch=8, ~23 min)
+  ✓ ft_T5_Qwen3-8B_lora_r64 MMLU done
+[20:39:51]   ft_T5_Qwen3-8B_lora_r64: gsm8k (batch=1, limit=100, ~10 min)
+  ✓ ft_T5_Qwen3-8B_lora_r64 GSM8K done
+  ✓ ft_T5_Qwen3-8B_lora_r64 all done
+[21:06:13] Evaluating PEFT: T6_Qwen3-32B_lora_r32 (base=Qwen/Qwen3-32B)
+[21:06:13] Evaluating: ft_T6_Qwen3-32B_lora_r32
+[21:06:13]   ft_T6_Qwen3-32B_lora_r32: LL tasks limit=100 (batch=8, ~36 min)
+  ✓ ft_T6_Qwen3-32B_lora_r32 LL tasks done
+[22:40:10]   ft_T6_Qwen3-32B_lora_r32: MMLU limit=5/subtask (batch=8, ~23 min)
+  ✓ ft_T6_Qwen3-32B_lora_r32 MMLU done
+[23:19:45]   ft_T6_Qwen3-32B_lora_r32: gsm8k (batch=1, limit=100, ~10 min)
+  ✓ ft_T6_Qwen3-32B_lora_r32 GSM8K done
+  ✓ ft_T6_Qwen3-32B_lora_r32 all done
+[01:06:57] Evaluating PEFT: T7_Qwen3-30B-A3B_lora_r16 (base=Qwen/Qwen3-30B-A3B)
+[01:06:57] Evaluating: ft_T7_Qwen3-30B-A3B_lora_r16
+[01:06:57]   ft_T7_Qwen3-30B-A3B_lora_r16: LL tasks limit=100 (batch=8, ~36 min)
+  ✗ ft_T7_Qwen3-30B-A3B_lora_r16 LL tasks failed
+[01:13:54]   ft_T7_Qwen3-30B-A3B_lora_r16: MMLU limit=5/subtask (batch=8, ~23 min)
+  ✗ ft_T7_Qwen3-30B-A3B_lora_r16 MMLU failed (non-fatal)
+[01:20:32]   ft_T7_Qwen3-30B-A3B_lora_r16: gsm8k (batch=1, limit=100, ~10 min)
+  ✗ ft_T7_Qwen3-30B-A3B_lora_r16 GSM8K failed (non-fatal)
+  ✓ ft_T7_Qwen3-30B-A3B_lora_r16 all done
+[01:27:09] Evaluating PEFT: T11_DeepSeek-V2-Lite_lora_r32 (base=deepseek-ai/DeepSeek-V2-Lite)
+[01:27:09] Evaluating: ft_T11_DeepSeek-V2-Lite_lora_r32
+[01:27:09]   ft_T11_DeepSeek-V2-Lite_lora_r32: LL tasks limit=100 (batch=8, ~36 min)
+  ✗ ft_T11_DeepSeek-V2-Lite_lora_r32 LL tasks failed
+[01:30:31]   ft_T11_DeepSeek-V2-Lite_lora_r32: MMLU limit=5/subtask (batch=8, ~23 min)
+  ✗ ft_T11_DeepSeek-V2-Lite_lora_r32 MMLU failed (non-fatal)
+[01:34:33]   ft_T11_DeepSeek-V2-Lite_lora_r32: gsm8k (batch=1, limit=100, ~10 min)
+  ✗ ft_T11_DeepSeek-V2-Lite_lora_r32 GSM8K failed (non-fatal)
+  ✓ ft_T11_DeepSeek-V2-Lite_lora_r32 all done
+[01:38:37] Evaluating PEFT: T20_Qwen3-8B_dpo (base=Qwen/Qwen3-8B)
+[01:38:37] Evaluating: ft_T20_Qwen3-8B_dpo
+[01:38:37]   ft_T20_Qwen3-8B_dpo: LL tasks limit=100 (batch=8, ~36 min)
+  ✓ ft_T20_Qwen3-8B_dpo LL tasks done
+[01:57:03]   ft_T20_Qwen3-8B_dpo: MMLU limit=5/subtask (batch=8, ~23 min)
+  ✓ ft_T20_Qwen3-8B_dpo MMLU done
+[02:07:11]   ft_T20_Qwen3-8B_dpo: gsm8k (batch=1, limit=100, ~10 min)
+  ✓ ft_T20_Qwen3-8B_dpo GSM8K done
+  ✓ ft_T20_Qwen3-8B_dpo all done
+[02:35:09] Evaluating PEFT: T21_Qwen3-8B_grpo (base=Qwen/Qwen3-8B)
+[02:35:09] Evaluating: ft_T21_Qwen3-8B_grpo
+[02:35:09]   ft_T21_Qwen3-8B_grpo: LL tasks limit=100 (batch=8, ~36 min)
+  ✓ ft_T21_Qwen3-8B_grpo LL tasks done
+[02:53:46]   ft_T21_Qwen3-8B_grpo: MMLU limit=5/subtask (batch=8, ~23 min)
+  ✓ ft_T21_Qwen3-8B_grpo MMLU done
+[03:04:04]   ft_T21_Qwen3-8B_grpo: gsm8k (batch=1, limit=100, ~10 min)
+  ✓ ft_T21_Qwen3-8B_grpo GSM8K done
+  ✓ ft_T21_Qwen3-8B_grpo all done
+[03:32:05] Evaluating PEFT: T22_Qwen3-32B_dpo (base=Qwen/Qwen3-32B)
+[03:32:05] Evaluating: ft_T22_Qwen3-32B_dpo
+[03:32:05]   ft_T22_Qwen3-32B_dpo: LL tasks limit=100 (batch=8, ~36 min)
+  ✓ ft_T22_Qwen3-32B_dpo LL tasks done
+[05:05:27]   ft_T22_Qwen3-32B_dpo: MMLU limit=5/subtask (batch=8, ~23 min)
+  ✓ ft_T22_Qwen3-32B_dpo MMLU done
+[05:45:03]   ft_T22_Qwen3-32B_dpo: gsm8k (batch=1, limit=100, ~10 min)
+  ✓ ft_T22_Qwen3-32B_dpo GSM8K done
+  ✓ ft_T22_Qwen3-32B_dpo all done
+[08:20:22] Evaluating PEFT: T24_DeepSeek-R1-Distill-Llama-8B_lora_r16 (base=deepseek-ai/DeepSeek-R1-Distill-Llama-8B)
+[08:20:22] Evaluating: ft_T24_DeepSeek-R1-Distill-Llama-8B_lora_r16
+[08:20:22]   ft_T24_DeepSeek-R1-Distill-Llama-8B_lora_r16: LL tasks limit=100 (batch=8, ~36 min)
+  ✓ ft_T24_DeepSeek-R1-Distill-Llama-8B_lora_r16 LL tasks done
+[08:41:51]   ft_T24_DeepSeek-R1-Distill-Llama-8B_lora_r16: MMLU limit=5/subtask (batch=8, ~23 min)
+  ✗ ft_T24_DeepSeek-R1-Distill-Llama-8B_lora_r16 MMLU failed (non-fatal)
+[08:45:43]   ft_T24_DeepSeek-R1-Distill-Llama-8B_lora_r16: gsm8k (batch=1, limit=100, ~10 min)
+  ✓ ft_T24_DeepSeek-R1-Distill-Llama-8B_lora_r16 GSM8K done
+  ✓ ft_T24_DeepSeek-R1-Distill-Llama-8B_lora_r16 all done
+[09:10:12] Evaluating full model: M1_Qwen3-8B_slerp_sft
+[09:10:12] Evaluating: ft_M1_Qwen3-8B_slerp_sft
+[09:10:12]   ft_M1_Qwen3-8B_slerp_sft: LL tasks limit=100 (batch=8, ~36 min)
+  ✓ ft_M1_Qwen3-8B_slerp_sft LL tasks done
+[09:26:46]   ft_M1_Qwen3-8B_slerp_sft: MMLU limit=5/subtask (batch=8, ~23 min)
+  ✓ ft_M1_Qwen3-8B_slerp_sft MMLU done
+[09:36:07]   ft_M1_Qwen3-8B_slerp_sft: gsm8k (batch=1, limit=100, ~10 min)
+  ✓ ft_M1_Qwen3-8B_slerp_sft GSM8K done
+  ✓ ft_M1_Qwen3-8B_slerp_sft all done
+[10:01:30] Evaluating full model: M2_Qwen3-8B_ties_sft_dpo
+[10:01:30] Evaluating: ft_M2_Qwen3-8B_ties_sft_dpo
+[10:01:30]   ft_M2_Qwen3-8B_ties_sft_dpo: LL tasks limit=100 (batch=8, ~36 min)
+  ✓ ft_M2_Qwen3-8B_ties_sft_dpo LL tasks done
+[10:18:09]   ft_M2_Qwen3-8B_ties_sft_dpo: MMLU limit=5/subtask (batch=8, ~23 min)
+  ✓ ft_M2_Qwen3-8B_ties_sft_dpo MMLU done
+[10:27:29]   ft_M2_Qwen3-8B_ties_sft_dpo: gsm8k (batch=1, limit=100, ~10 min)
+  ✓ ft_M2_Qwen3-8B_ties_sft_dpo GSM8K done
+  ✓ ft_M2_Qwen3-8B_ties_sft_dpo all done
+[10:52:52] Evaluating full model: M3_Qwen3-8B_dare_coder
+[10:52:52] Evaluating: ft_M3_Qwen3-8B_dare_coder
+[10:52:52]   ft_M3_Qwen3-8B_dare_coder: LL tasks limit=100 (batch=8, ~36 min)
+  ✓ ft_M3_Qwen3-8B_dare_coder LL tasks done
+[11:09:32]   ft_M3_Qwen3-8B_dare_coder: MMLU limit=5/subtask (batch=8, ~23 min)
+  ✓ ft_M3_Qwen3-8B_dare_coder MMLU done
+[11:18:55]   ft_M3_Qwen3-8B_dare_coder: gsm8k (batch=1, limit=100, ~10 min)
+  ✓ ft_M3_Qwen3-8B_dare_coder GSM8K done
+  ✓ ft_M3_Qwen3-8B_dare_coder all done
+[11:44:21] --- Results Summary ---
+[11:44:21] === Evaluation complete. Results in: /home/student/Desktop/Test/results/evaluation ===

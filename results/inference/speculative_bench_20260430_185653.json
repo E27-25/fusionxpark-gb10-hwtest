@@ -1,0 +1,15 @@
+[
+  {
+    "label": "0.6B\u21928B",
+    "draft": "Qwen/Qwen3-0.6B",
+    "target": "Qwen/Qwen3-8B",
+    "baseline_tps": 10.0,
+    "baseline_mem_gb": 16.45,
+    "speculative_hf": {
+      "tokens_per_sec": 5.7,
+      "peak_memory_gb": 18.07,
+      "both_models_gb": 17.61
+    },
+    "speedup_hf": 0.57
+  }
+]

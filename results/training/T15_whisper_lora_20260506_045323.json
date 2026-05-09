@@ -1,0 +1,12 @@
+{
+  "experiment": "T15",
+  "model": "openai/whisper-large-v3",
+  "method": "lora_r16",
+  "elapsed_min": 127.7,
+  "steps": 500,
+  "final_loss": 0.2070417022705078,
+  "peak_memory_gb": 20.58,
+  "model_load_gb": 3.2,
+  "output_dir": "/home/student/Desktop/Test/models/T15_whisper-large-v3_lora",
+  "timestamp": "2026-05-06T04:53:23.878424"
+}

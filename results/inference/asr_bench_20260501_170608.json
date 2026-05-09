@@ -1,0 +1,38 @@
+[
+  {
+    "model": "openai/whisper-large-v3",
+    "model_key": "whisper-large-v3",
+    "n_samples": 50,
+    "wer_pct": 3.72,
+    "cer_pct": 1.4,
+    "mean_rtf": 0.338,
+    "rtf_stdev": 0.1262,
+    "rtf_p95": 0.58,
+    "min_rtf": 0.1609,
+    "max_rtf": 0.6632,
+    "mean_ttft_ms": 2119.9,
+    "peak_memory_gb": 3.39,
+    "model_load_gb": 3.09,
+    "power_w": null,
+    "temp_c": null,
+    "tokens_per_watt": null
+  },
+  {
+    "model": "openai/whisper-large-v3-turbo",
+    "model_key": "whisper-large-v3-turbo",
+    "n_samples": 50,
+    "wer_pct": 2.95,
+    "cer_pct": 1.18,
+    "mean_rtf": 0.1834,
+    "rtf_stdev": 0.0768,
+    "rtf_p95": 0.3485,
+    "min_rtf": 0.0725,
+    "max_rtf": 0.3823,
+    "mean_ttft_ms": 1029.0,
+    "peak_memory_gb": 3.12,
+    "model_load_gb": 1.65,
+    "power_w": null,
+    "temp_c": null,
+    "tokens_per_watt": null
+  }
+]

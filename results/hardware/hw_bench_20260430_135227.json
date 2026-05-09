@@ -1,0 +1,59 @@
+{
+  "timestamp": "2026-04-30T13:52:27.761932",
+  "device": "NVIDIA GB10 Grace Blackwell",
+  "theoretical": {
+    "memory_bw_gbs": 273,
+    "bf16_tflops": 67,
+    "fp8_tflops": 134,
+    "int8_tops": 134,
+    "nvlink_c2c_gbs": 900,
+    "roofline_ridge_flops_per_byte": 245.4
+  },
+  "hw1_memory_bw": {
+    "1GB": {
+      "bw_gbs": 134.7,
+      "util_pct": 49.4
+    },
+    "4GB": {
+      "bw_gbs": 131.8,
+      "util_pct": 48.3
+    },
+    "16GB": {
+      "bw_gbs": 133.9,
+      "util_pct": 49.0
+    },
+    "32GB": {
+      "bw_gbs": 132.2,
+      "util_pct": 48.4
+    },
+    "64GB": {
+      "error": "OOM"
+    }
+  },
+  "hw2_compute": {
+    "bf16": {
+      "peak_tflops": 11.8,
+      "util_pct": 17.5
+    },
+    "fp32": {
+      "peak_tflops": 36.9,
+      "util_pct": 55.1
+    },
+    "fp8": {
+      "peak_tflops": 61.3,
+      "util_pct": 45.7
+    }
+  },
+  "hw3_nvlink": {},
+  "hw4_thermal": {},
+  "hw5_roofline": {},
+  "hw5b_attention": {},
+  "hw5c_nvme": {},
+  "hw5d_memory_pressure": {},
+  "hw6_model_bw_efficiency": {},
+  "device_info": {
+    "name": "NVIDIA GB10",
+    "compute_cap": "12.1",
+    "total_memory_gb": 128.5
+  }
+}

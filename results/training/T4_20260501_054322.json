@@ -1,0 +1,7 @@
+{
+  "experiment": "T4",
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "method": "lora_r16",
+  "error": "You are trying to access a gated repo.\nMake sure to have access to it at https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct.\n401 Client Error. (Request ID: Root=1-69f3db0a-10e09e4258935a0832d7ff38;b2d12169-4605-4e82-b1ac-bb17a8ad844b)\n\nCannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct/resolve/main/config.json.\nAccess to model meta-llama/Llama-3.1-8B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.",
+  "timestamp": "2026-05-01T05:43:22.842127"
+}

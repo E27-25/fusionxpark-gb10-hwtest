@@ -1,0 +1,178 @@
+{
+  "needle": [
+    {
+      "model": "Qwen/Qwen3-8B",
+      "model_key": "qwen3-8b",
+      "target_ctx_len": 4096,
+      "actual_ctx_len": 4019,
+      "needle_depth_pct": 10,
+      "ttft_ms": 7405.2,
+      "generation_sec": 8.855,
+      "correct": true,
+      "generated": "The secret number is 42391.\nThe secret number is 4239",
+      "found_number": "42391",
+      "peak_memory_gb": 17.44,
+      "model_load_gb": 16.38,
+      "power_w": null,
+      "temp_c": null
+    },
+    {
+      "model": "Qwen/Qwen3-8B",
+      "model_key": "qwen3-8b",
+      "target_ctx_len": 4096,
+      "actual_ctx_len": 4019,
+      "needle_depth_pct": 50,
+      "ttft_ms": 6784.9,
+      "generation_sec": 8.795,
+      "correct": true,
+      "generated": "The secret number is 42391. The secret number is 4239",
+      "found_number": "42391",
+      "peak_memory_gb": 17.44,
+      "model_load_gb": 16.42,
+      "power_w": null,
+      "temp_c": null
+    },
+    {
+      "model": "Qwen/Qwen3-8B",
+      "model_key": "qwen3-8b",
+      "target_ctx_len": 4096,
+      "actual_ctx_len": 4019,
+      "needle_depth_pct": 90,
+      "ttft_ms": 6840.4,
+      "generation_sec": 8.887,
+      "correct": false,
+      "generated": "The secret number mentioned in the document is 42.\nThe secret number mentioned in the document is",
+      "found_number": null,
+      "peak_memory_gb": 17.44,
+      "model_load_gb": 16.42,
+      "power_w": null,
+      "temp_c": null
+    },
+    {
+      "model": "Qwen/Qwen3-8B",
+      "model_key": "qwen3-8b",
+      "target_ctx_len": 8192,
+      "actual_ctx_len": 8115,
+      "needle_depth_pct": 10,
+      "ttft_ms": 14399.0,
+      "generation_sec": 16.379,
+      "correct": true,
+      "generated": "The secret number is 42391.\nThe secret number is 4239",
+      "found_number": "42391",
+      "peak_memory_gb": 18.48,
+      "model_load_gb": 16.42,
+      "power_w": null,
+      "temp_c": null
+    },
+    {
+      "model": "Qwen/Qwen3-8B",
+      "model_key": "qwen3-8b",
+      "target_ctx_len": 8192,
+      "actual_ctx_len": 8115,
+      "needle_depth_pct": 50,
+      "ttft_ms": 14258.1,
+      "generation_sec": 16.334,
+      "correct": true,
+      "generated": "The secret number is 42391. The secret number is 4239",
+      "found_number": "42391",
+      "peak_memory_gb": 18.48,
+      "model_load_gb": 16.42,
+      "power_w": null,
+      "temp_c": null
+    },
+    {
+      "model": "Qwen/Qwen3-8B",
+      "model_key": "qwen3-8b",
+      "target_ctx_len": 8192,
+      "actual_ctx_len": 8115,
+      "needle_depth_pct": 90,
+      "ttft_ms": 14048.4,
+      "generation_sec": 16.238,
+      "correct": false,
+      "generated": "The secret number is 42.\nThe secret number is 42. The secret number is",
+      "found_number": null,
+      "peak_memory_gb": 18.48,
+      "model_load_gb": 16.42,
+      "power_w": null,
+      "temp_c": null
+    },
+    {
+      "model": "Qwen/Qwen3-8B",
+      "model_key": "qwen3-8b",
+      "target_ctx_len": 16384,
+      "actual_ctx_len": 16307,
+      "needle_depth_pct": 10,
+      "ttft_ms": 28410.3,
+      "generation_sec": 30.88,
+      "correct": true,
+      "generated": "The secret number is 42391. The secret number is 4239",
+      "found_number": "42391",
+      "peak_memory_gb": 20.57,
+      "model_load_gb": 16.42,
+      "power_w": null,
+      "temp_c": null
+    },
+    {
+      "model": "Qwen/Qwen3-8B",
+      "model_key": "qwen3-8b",
+      "target_ctx_len": 16384,
+      "actual_ctx_len": 16307,
+      "needle_depth_pct": 50,
+      "ttft_ms": 28334.3,
+      "generation_sec": 30.716,
+      "correct": true,
+      "generated": "The secret number is 42391. resources, training methodologies, and evaluation frameworks.",
+      "found_number": "42391",
+      "peak_memory_gb": 20.57,
+      "model_load_gb": 16.42,
+      "power_w": null,
+      "temp_c": null
+    },
+    {
+      "model": "Qwen/Qwen3-8B",
+      "model_key": "qwen3-8b",
+      "target_ctx_len": 16384,
+      "actual_ctx_len": 16307,
+      "needle_depth_pct": 90,
+      "ttft_ms": 28316.2,
+      "generation_sec": 30.781,
+      "correct": false,
+      "generated": "The secret number is 42.\nThe secret number is 42. The secret number is",
+      "found_number": null,
+      "peak_memory_gb": 20.57,
+      "model_load_gb": 16.42,
+      "power_w": null,
+      "temp_c": null
+    }
+  ],
+  "kv_scaling": [
+    {
+      "model": "Qwen/Qwen3-8B",
+      "model_key": "qwen3-8b",
+      "kv_scaling": [
+        {
+          "target_ctx": 4096,
+          "actual_ctx": 4096,
+          "ttft_ms": 7231.1,
+          "total_mem_gb": 17.46,
+          "kv_cache_gb": 1.04
+        },
+        {
+          "target_ctx": 8192,
+          "actual_ctx": 8192,
+          "ttft_ms": 14310.5,
+          "total_mem_gb": 18.5,
+          "kv_cache_gb": 2.08
+        },
+        {
+          "target_ctx": 16384,
+          "actual_ctx": 16384,
+          "ttft_ms": 28952.5,
+          "total_mem_gb": 20.58,
+          "kv_cache_gb": 4.17
+        }
+      ],
+      "base_model_gb": 16.42
+    }
+  ]
+}

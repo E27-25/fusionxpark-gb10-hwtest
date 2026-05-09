@@ -1,0 +1,251 @@
+{
+  "timestamp": "2026-04-30T14:55:32.638568",
+  "device": "NVIDIA GB10 Grace Blackwell",
+  "theoretical": {
+    "memory_bw_gbs": 273,
+    "bf16_tflops": 67,
+    "fp8_tflops": 134,
+    "int8_tops": 134,
+    "nvlink_c2c_gbs": 900,
+    "roofline_ridge_flops_per_byte": 245.4
+  },
+  "hw1_memory_bw": {
+    "1GB": {
+      "bw_gbs": 133.6,
+      "util_pct": 48.9
+    },
+    "4GB": {
+      "bw_gbs": 132.8,
+      "util_pct": 48.6
+    },
+    "16GB": {
+      "bw_gbs": 125.0,
+      "util_pct": 45.8
+    },
+    "32GB": {
+      "bw_gbs": 123.9,
+      "util_pct": 45.4
+    },
+    "64GB": {
+      "error": "OOM"
+    }
+  },
+  "hw2_compute": {
+    "bf16": {
+      "peak_tflops": 11.9,
+      "util_pct": 17.7
+    },
+    "fp32": {
+      "peak_tflops": 39.9,
+      "util_pct": 59.6
+    },
+    "fp8": {
+      "peak_tflops": 61.1,
+      "util_pct": 45.6
+    }
+  },
+  "hw3_nvlink": {
+    "0.1GB": {
+      "h2d_gbs": 48.3,
+      "d2h_gbs": 4.0
+    },
+    "0.5GB": {
+      "h2d_gbs": 53.5,
+      "d2h_gbs": 3.4
+    },
+    "1GB": {
+      "h2d_gbs": 54.9,
+      "d2h_gbs": 54.7
+    },
+    "4GB": {
+      "h2d_gbs": 54.8,
+      "d2h_gbs": 0.4
+    },
+    "8GB": {
+      "h2d_gbs": 51.4,
+      "d2h_gbs": 4.4
+    },
+    "note": "H2D via pinned\u2192cuda DMA; D2H via blocking .cpu(). NVLink-C2C unified mem."
+  },
+  "hw4_thermal": {
+    "idle": {
+      "power_draw_w": 10.92,
+      "temperature_c": 49,
+      "gpu_util_pct": 0,
+      "mem_util_pct": 0,
+      "sm_clock_mhz": 2405
+    },
+    "sustained_load": {
+      "duration_sec": 15,
+      "peak_power_w": 91.12,
+      "peak_temp_c": 72,
+      "throttle_threshold_c": 53,
+      "throttle_occurred": true,
+      "snapshots": [
+        {
+          "power_draw_w": 91.12,
+          "temperature_c": 68,
+          "gpu_util_pct": 96,
+          "mem_util_pct": 0,
+          "sm_clock_mhz": 2216
+        },
+        {
+          "power_draw_w": 89.78,
+          "temperature_c": 70,
+          "gpu_util_pct": 96,
+          "mem_util_pct": 0,
+          "sm_clock_mhz": 2190
+        },
+        {
+          "power_draw_w": 88.91,
+          "temperature_c": 72,
+          "gpu_util_pct": 96,
+          "mem_util_pct": 0,
+          "sm_clock_mhz": 2177
+        }
+      ]
+    }
+  },
+  "hw5_roofline": {
+    "ridge_bf16_flops_per_byte": 245.4,
+    "ridge_fp8_flops_per_byte": 490.8,
+    "workloads": {
+      "LLM decode batch=1  (BF16)": {
+        "arithmetic_intensity": 1.0,
+        "bottleneck": "MEMORY"
+      },
+      "LLM decode batch=32 (BF16)": {
+        "arithmetic_intensity": 32.0,
+        "bottleneck": "MEMORY"
+      },
+      "LLM prefill seq=2048": {
+        "arithmetic_intensity": 1000.0,
+        "bottleneck": "COMPUTE"
+      },
+      "Training fwd+bwd": {
+        "arithmetic_intensity": 2000.0,
+        "bottleneck": "COMPUTE"
+      },
+      "GEMM BF16 (roofline)": {
+        "arithmetic_intensity": 245.42124542124543,
+        "bottleneck": "COMPUTE"
+      }
+    }
+  },
+  "hw5b_attention": {
+    "seq_512": {
+      "sdpa_ms": 0.072,
+      "fa3_ms": "not_installed"
+    },
+    "seq_1024": {
+      "sdpa_ms": 0.271,
+      "fa3_ms": "not_installed"
+    },
+    "seq_2048": {
+      "sdpa_ms": 0.895,
+      "fa3_ms": "not_installed"
+    },
+    "seq_4096": {
+      "sdpa_ms": 3.322,
+      "fa3_ms": "not_installed"
+    },
+    "seq_8192": {
+      "sdpa_ms": 12.771,
+      "fa3_ms": "not_installed"
+    }
+  },
+  "hw5c_nvme": {
+    "write_gbs": 3.41,
+    "read_gbs": 5.43,
+    "load_time_7B_BF16": 2.6,
+    "load_time_32B_BF16": 11.8,
+    "load_time_72B_BF16": 26.5,
+    "load_time_235B_NF4": 21.7
+  },
+  "hw5d_memory_pressure": {
+    "10GB": {
+      "target_gb": 10,
+      "allocated_gb": 10.0,
+      "pct_used": 7.8,
+      "alloc_time_ms": 625.3,
+      "op_latency_ms": 0.223
+    },
+    "20GB": {
+      "target_gb": 20,
+      "allocated_gb": 20.03,
+      "pct_used": 15.6,
+      "alloc_time_ms": 724.0,
+      "op_latency_ms": 0.0435
+    },
+    "40GB": {
+      "target_gb": 40,
+      "allocated_gb": 40.03,
+      "pct_used": 31.2,
+      "alloc_time_ms": 1524.4,
+      "op_latency_ms": 0.0435
+    },
+    "60GB": {
+      "target_gb": 60,
+      "allocated_gb": 60.03,
+      "pct_used": 46.7,
+      "alloc_time_ms": 2188.6,
+      "op_latency_ms": 0.0434
+    },
+    "80GB": {
+      "target_gb": 80,
+      "allocated_gb": 80.03,
+      "pct_used": 62.3,
+      "alloc_time_ms": 2991.5,
+      "op_latency_ms": 0.0443
+    },
+    "96GB": {
+      "target_gb": 96,
+      "allocated_gb": 96.03,
+      "pct_used": 74.8,
+      "alloc_time_ms": 3451.1,
+      "op_latency_ms": 0.0441
+    },
+    "108GB": {
+      "target_gb": 108,
+      "allocated_gb": 108.03,
+      "pct_used": 84.1,
+      "alloc_time_ms": 3858.9,
+      "op_latency_ms": 0.0442
+    },
+    "112GB": {
+      "target_gb": 112,
+      "allocated_gb": 112.03,
+      "pct_used": 87.2,
+      "alloc_time_ms": 4117.2,
+      "op_latency_ms": 0.0446
+    }
+  },
+  "hw6_model_bw_efficiency": {
+    "7B_bf16": {
+      "model_size_gb": 14.0,
+      "layer_size_gb": 0.44,
+      "achieved_bw_gbs": 118.5,
+      "bw_util_pct": 43.4,
+      "estimated_tps": 8.5
+    },
+    "32B_bf16": {
+      "model_size_gb": 64.0,
+      "layer_size_gb": 2.0,
+      "achieved_bw_gbs": 121.3,
+      "bw_util_pct": 44.4,
+      "estimated_tps": 1.9
+    },
+    "70B_nf4": {
+      "model_size_gb": 35.0,
+      "layer_size_gb": 1.09,
+      "achieved_bw_gbs": 120.6,
+      "bw_util_pct": 44.2,
+      "estimated_tps": 3.4
+    }
+  },
+  "device_info": {
+    "name": "NVIDIA GB10",
+    "compute_cap": "12.1",
+    "total_memory_gb": 128.5
+  }
+}

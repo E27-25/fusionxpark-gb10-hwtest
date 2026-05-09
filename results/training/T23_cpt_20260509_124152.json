@@ -1,0 +1,26 @@
+{
+  "experiment": "T23",
+  "model": "Qwen/Qwen3-8B",
+  "method": "cpt",
+  "dataset": "openwebtext",
+  "elapsed_min": 1494.9,
+  "steps": 500,
+  "initial_loss": 2.4736207580566405,
+  "final_loss": 2.3795628356933594,
+  "loss_curve": [
+    2.4736207580566405,
+    2.3690663146972657,
+    2.377091369628906,
+    2.4056732177734377,
+    2.4231976318359374,
+    2.4291868591308594,
+    2.416357116699219,
+    2.3967994689941405,
+    2.386465301513672,
+    2.3795628356933594
+  ],
+  "peak_memory_gb": 53.89,
+  "model_load_gb": 16.38,
+  "output_dir": "/home/student/Desktop/Test/models/T23_Qwen3-8B_cpt",
+  "timestamp": "2026-05-09T12:41:52.724404"
+}
