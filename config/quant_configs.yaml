@@ -1,0 +1,91 @@
+################################################################################
+# quant_configs.yaml — quantization recipes per format
+################################################################################
+
+reference_model: Qwen/Qwen3-8B
+
+formats:
+  bf16:
+    dtype: bfloat16
+    tool: native
+    framework: [vllm, sglang, hf]
+    priority: 1_baseline
+
+  fp8:
+    dtype: float8_e4m3fn
+    tool: [tensorrt_llm, vllm]
+    framework: [trtllm, vllm]
+    priority: 0_highest       # Blackwell SM120 native FP8
+    notes: "Blackwell has native FP8 Tensor Cores — expect 2x vs BF16 throughput"
+    trtllm_flags: "--fp8 --calibrate_method entropy"
+
+  int8:
+    dtype: int8
+    tool: bitsandbytes
+    load_kwargs:
+      load_in_8bit: true
+    framework: [hf]
+
+  awq:
+    dtype: int4
+    tool: autoawq
+    bits: 4
+    group_size: 128
+    zero_point: true
+    framework: [vllm, hf_awq]
+    awq_kwargs:
+      w_bit: 4
+      q_group_size: 128
+      zero_point: true
+
+  gptq:
+    dtype: int4
+    tool: auto_gptq
+    bits: 4
+    group_size: 128
+    desc_act: false
+    framework: [vllm, hf_gptq]
+    gptq_kwargs:
+      bits: 4
+      group_size: 128
+      desc_act: false
+      use_triton: false      # triton may not work on aarch64
+
+  nf4:
+    dtype: nf4
+    tool: bitsandbytes
+    load_kwargs:
+      load_in_4bit: true
+      bnb_4bit_quant_type: nf4
+      bnb_4bit_compute_dtype: bfloat16
+      bnb_4bit_use_double_quant: true
+    framework: [hf]
+    notes: "Training use — not for serving"
+
+  gguf_q4_k_m:
+    tool: llama_cpp
+    quant_type: Q4_K_M
+    est_ppl_loss: "~0.15 PPL vs FP16"
+    build_flags: "-DLLAMA_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=120"
+
+  gguf_q5_k_m:
+    tool: llama_cpp
+    quant_type: Q5_K_M
+    est_ppl_loss: "~0.05 PPL vs FP16"
+    build_flags: "-DLLAMA_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=120"
+
+  gguf_q8_0:
+    tool: llama_cpp
+    quant_type: Q8_0
+    est_ppl_loss: "~0.001 PPL vs FP16"
+    build_flags: "-DLLAMA_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=120"
+
+# Metrics to collect per format
+metrics:
+  - tokens_per_second
+  - ttft_ms
+  - peak_memory_gb
+  - bandwidth_utilization_pct
+  - mfu_pct
+  - perplexity          # quality proxy
+  - mmlu_accuracy       # quality check on 1000 samples

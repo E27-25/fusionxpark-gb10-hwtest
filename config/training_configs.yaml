@@ -1,0 +1,222 @@
+################################################################################
+# training_configs.yaml — hyperparameters for T1–T24 + M1–M3
+################################################################################
+
+defaults:
+  output_dir: /home/student/Desktop/Test/results/training
+  logging_dir: /home/student/Desktop/Test/logs
+  bf16: true
+  gradient_checkpointing: true
+  dataloader_num_workers: 4
+  report_to: none
+  save_total_limit: 1
+
+full_ft:  # T1, T2
+  learning_rate: 2.0e-5
+  lr_scheduler_type: cosine
+  warmup_ratio: 0.05
+  per_device_train_batch_size: 2
+  gradient_accumulation_steps: 16
+  max_seq_length: 2048
+  num_train_epochs: 1
+  optim: adamw_bnb_8bit
+  weight_decay: 0.01
+
+lora_r16:  # T3, T4, T15, T24
+  r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+  learning_rate: 2.0e-4
+  lr_scheduler_type: cosine
+  warmup_ratio: 0.05
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 8
+  max_seq_length: 2048
+  num_train_epochs: 2
+  optim: adamw_torch
+
+lora_r32:  # T6 (32B), T11 (DeepSeek)
+  r: 32
+  lora_alpha: 64
+  lora_dropout: 0.05
+  target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+  learning_rate: 2.0e-4
+  lr_scheduler_type: cosine
+  warmup_ratio: 0.05
+  per_device_train_batch_size: 2
+  gradient_accumulation_steps: 16
+  max_seq_length: 2048
+  num_train_epochs: 2
+  optim: adamw_torch
+
+lora_r64:  # T5
+  r: 64
+  lora_alpha: 128
+  lora_dropout: 0.05
+  target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+  learning_rate: 2.0e-4
+  lr_scheduler_type: cosine
+  warmup_ratio: 0.05
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 8
+  max_seq_length: 2048
+  num_train_epochs: 2
+  optim: adamw_torch
+
+qlora_nf4:  # T8
+  r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_compute_dtype: bfloat16
+  bnb_4bit_use_double_quant: true
+  learning_rate: 2.0e-4
+  lr_scheduler_type: cosine
+  warmup_ratio: 0.05
+  per_device_train_batch_size: 2
+  gradient_accumulation_steps: 16
+  max_seq_length: 1024
+  num_train_epochs: 1
+  optim: paged_adamw_8bit
+
+vlm_lora:  # T9, T10
+  r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  target_modules: [q_proj, k_proj, v_proj, o_proj]
+  freeze_vision_encoder: true
+  image_resolution: 448
+  max_num_tiles: 4
+  learning_rate: 2.0e-4
+  per_device_train_batch_size: 2
+  gradient_accumulation_steps: 8
+  max_seq_length: 2048
+  num_train_epochs: 1
+
+moe_lora:  # T7 (Qwen3-30B-A3B), T12 (Mixtral)
+  r: 16
+  lora_alpha: 32
+  target_modules: [q_proj, k_proj, v_proj, o_proj]  # attn only for MoE
+  output_router_logits: true
+  router_aux_loss_coef: 0.01
+  learning_rate: 2.0e-4
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 32
+  max_seq_length: 2048
+  num_train_epochs: 1
+
+dpo:  # T20, T22
+  beta: 0.1
+  learning_rate: 5.0e-7
+  lr_scheduler_type: cosine
+  warmup_ratio: 0.05
+  per_device_train_batch_size: 2
+  gradient_accumulation_steps: 8
+  max_length: 2048
+  max_prompt_length: 1024
+  num_train_epochs: 1
+  optim: adamw_torch
+
+grpo:  # T21
+  learning_rate: 1.0e-6
+  num_generations: 8        # G — group size
+  max_new_tokens: 512
+  temperature: 0.7
+  clip_range: 0.2           # epsilon
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 16
+  num_train_epochs: 1
+
+cpt:  # T23 — continued pre-training
+  learning_rate: 1.0e-4
+  lr_scheduler_type: cosine
+  warmup_ratio: 0.03
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 128
+  max_seq_length: 4096
+  max_steps: 5000
+  optim: adamw_bnb_8bit
+
+asr_full_ft:  # T14
+  learning_rate: 1.0e-5
+  per_device_train_batch_size: 8
+  gradient_accumulation_steps: 2
+  max_steps: 4000
+  warmup_steps: 200
+  generation_max_length: 225
+  language: en
+
+asr_lora:  # T15, T16
+  r: 16
+  lora_alpha: 32
+  target_modules: [q_proj, v_proj]
+  learning_rate: 1.0e-4
+  per_device_train_batch_size: 16
+  gradient_accumulation_steps: 2
+  max_steps: 2000
+
+tts_ft:  # T17
+  learning_rate: 5.0e-5
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 4
+  max_steps: 2000
+  warmup_steps: 100
+
+contrastive_embed:  # T18
+  learning_rate: 2.0e-5
+  per_device_train_batch_size: 128
+  gradient_accumulation_steps: 1
+  num_train_epochs: 3
+  temperature: 0.02
+
+cross_encoder_reranker:  # T19
+  learning_rate: 2.0e-5
+  per_device_train_batch_size: 32
+  gradient_accumulation_steps: 1
+  num_train_epochs: 3
+
+# Dataset IDs
+datasets:
+  alpaca: tatsu-lab/alpaca
+  openhermes: teknium/OpenHermes-2.5
+  ultrachat: HuggingFaceH4/ultrachat_200k
+  llava_instruct: liuhaotian/LLaVA-Instruct-150K
+  common_voice: mozilla-foundation/common_voice_17_0
+  ultrafeedback: HuggingFaceH4/ultrafeedback_binarized
+  openwebtext: Skylion007/openwebtext
+  gsm8k: openai/gsm8k
+
+# Experiment table T1–T24
+experiments:
+  T1:  {model: Qwen/Qwen3-8B,                        method: full_ft,            dataset: alpaca,      tags: [primary]}
+  T2:  {model: meta-llama/Llama-3.1-8B-Instruct,     method: full_ft,            dataset: alpaca}
+  T3:  {model: Qwen/Qwen3-8B,                        method: lora_r16,           dataset: alpaca,      tags: [primary]}
+  T4:  {model: meta-llama/Llama-3.1-8B-Instruct,     method: lora_r16,           dataset: alpaca}
+  T5:  {model: Qwen/Qwen3-8B,                        method: lora_r64,           dataset: openhermes}
+  T6:  {model: Qwen/Qwen3-32B,                       method: lora_r32,           dataset: alpaca}
+  T7:  {model: Qwen/Qwen3-30B-A3B,                   method: moe_lora,           dataset: alpaca}
+  T8:  {model: Qwen/Qwen2.5-72B-Instruct,            method: qlora_nf4,          dataset: alpaca}
+  T9:  {model: Qwen/Qwen2.5-VL-7B-Instruct,          method: vlm_lora,           dataset: llava_instruct}
+  T10: {model: Qwen/Qwen2.5-VL-7B-Instruct,          method: vlm_lora,           dataset: llava_instruct}
+  T11: {model: deepseek-ai/DeepSeek-V2-Lite-Chat,    method: lora_r32,           dataset: alpaca}
+  T12: {model: mistralai/Mixtral-8x7B-Instruct-v0.1, method: moe_lora,           dataset: alpaca}
+  T13: {model: Qwen/Qwen3-8B,                        method: unsloth_lora,       dataset: alpaca,      conditional: unsloth_available}
+  T14: {model: openai/whisper-large-v3,               method: asr_full_ft,        dataset: common_voice}
+  T15: {model: openai/whisper-large-v3,               method: asr_lora,           dataset: common_voice}
+  T16: {model: Qwen/Qwen2-Audio-7B-Instruct,          method: asr_lora,           dataset: common_voice}
+  T17: {model: Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice,  method: tts_ft,             dataset: custom_audio}
+  T18: {model: Qwen/Qwen3-VL-Embedding-8B,            method: contrastive_embed,  dataset: msmarco}
+  T19: {model: Qwen/Qwen3-VL-Reranker-8B,             method: cross_encoder_reranker, dataset: msmarco}
+  T20: {model: Qwen/Qwen3-8B,                        method: dpo,                dataset: ultrafeedback, requires: T3}
+  T21: {model: Qwen/Qwen3-8B,                        method: grpo,               dataset: gsm8k,       requires: T3}
+  T22: {model: Qwen/Qwen3-32B,                       method: dpo,                dataset: ultrafeedback, requires: T6}
+  T23: {model: Qwen/Qwen3-8B,                        method: cpt,                dataset: openwebtext}
+  T24: {model: deepseek-ai/DeepSeek-R1-Distill-Llama-8B, method: lora_r16,       dataset: alpaca}
+
+# Model merging M1–M3
+merges:
+  M1: {method: slerp,      models: [base_qwen3_8b, T3_merged],      purpose: "blend instruction + base"}
+  M2: {method: ties,       models: [T3_merged, T20_merged],          purpose: "SFT + DPO blend"}
+  M3: {method: dare_ties,  models: [Qwen3-8B, Qwen2.5-Coder-7B],    purpose: "general + code specialist"}

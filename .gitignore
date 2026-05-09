@@ -5,5 +5,4 @@ __pycache__/
 *.pth
 *.bin
 *.safetensors
-config/
 dashboard.html
