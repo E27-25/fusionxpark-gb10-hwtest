@@ -26,7 +26,7 @@
 
 ## Navigation
 
-[Hardware](#-hardware-specifications) · [Software](#-software-stack) · [Benchmarks](#-hardware-characterization) · [Inference](#-inference-benchmarks) · [Training](#-training-results) · [Evaluation](#-evaluation-results) · [Analysis](#-comparative-analysis) · [Structure](#-repository-structure)
+[Hardware](#-hardware-specifications) · [Software](#-software-stack) · [Benchmarks](#-hardware-characterization) · [Inference](#-inference-benchmarks) · [HIKARI](#-hikari-medical-ai-benchmark) · [Training](#-training-results) · [Evaluation](#-evaluation-results) · [Analysis](#-comparative-analysis) · [Structure](#-repository-structure)
 
 </div>
 
@@ -240,6 +240,121 @@ RTF > 1.0 = slower than real-time
 | Qwen3-0.6B → Qwen3-8B speculative (HF backend) | **0.57×** — slower than baseline (HF overhead) |
 | 16K needle-in-haystack (Qwen3-8B) | 6/9 correct — depth 90% fails at 4K–8K |
 | 32B LoRA at 32K context (GB10 advantage) | Fits entirely in unified memory; standard GPUs need sharding |
+
+---
+
+## 🏥 HIKARI Medical AI Benchmark
+
+*Real-world application benchmark — dermatology AI pipeline running on GB10 vs RTX 5070 Ti*
+
+**HIKARI** is a two-stage dermatology AI system:
+- **Stage 2 — Sirius-8B-SkinDx-RAG**: Skin disease diagnosis with Retrieval-Augmented Generation
+- **Stage 3 — Vega-8B-SkinCaption-Fused**: Detailed skin lesion captioning and analysis
+
+Both models are fine-tuned 8B VLMs (Qwen2.5-VL base) with domain-specific medical training.
+
+### Latency Comparison — ms per image (↓ lower is better)
+
+<table>
+<tr>
+<th>Backend</th>
+<th>Hardware</th>
+<th>Stage 2 bs=1</th>
+<th>Stage 2 bs=4</th>
+<th>Stage 3 bs=1</th>
+<th>Stage 3 bs=4</th>
+</tr>
+<tr>
+<td><strong>vLLM FP4</strong> (NVFP4_AWQ_LITE)</td>
+<td><strong>GB10 SM 12.1</strong></td>
+<td><strong>1,819 ms</strong></td>
+<td><strong>456 ms</strong></td>
+<td><strong>7,292 ms</strong></td>
+<td><strong>1,788 ms</strong></td>
+</tr>
+<tr>
+<td>BNB NF4</td>
+<td>GB10 SM 12.1</td>
+<td>2,348 ms</td>
+<td>2,373 ms</td>
+<td>7,438 ms</td>
+<td>7,407 ms</td>
+</tr>
+<tr>
+<td>HF BF16</td>
+<td>GB10 SM 12.1</td>
+<td>3,937 ms</td>
+<td>3,935 ms</td>
+<td>21,917 ms</td>
+<td>21,900 ms</td>
+</tr>
+<tr><td colspan="6"><em>── RTX 5070 Ti reference (16 GB VRAM, CUDA 12.9) ──</em></td></tr>
+<tr>
+<td>SGLang FP8</td>
+<td>RTX 5070 Ti</td>
+<td><strong>331 ms</strong> ⭐</td>
+<td><strong>110 ms</strong> ⭐</td>
+<td><strong>1,695 ms</strong> ⭐</td>
+<td><strong>584 ms</strong> ⭐</td>
+</tr>
+<tr>
+<td>vLLM BnB-4bit</td>
+<td>RTX 5070 Ti</td>
+<td>480 ms</td>
+<td>179 ms</td>
+<td>2,957 ms</td>
+<td>1,094 ms</td>
+</tr>
+<tr>
+<td>Unsloth BnB-4bit</td>
+<td>RTX 5070 Ti</td>
+<td>1,095 ms</td>
+<td>500 ms</td>
+<td>6,699 ms</td>
+<td>3,003 ms</td>
+</tr>
+</table>
+
+### Throughput Summary
+
+| Backend | Hardware | Stage 2 (img/s) | Stage 3 (img/s) |
+|---|---|:---:|:---:|
+| vLLM FP4 bs=4 | **GB10** | **2.19** | **0.56** |
+| vLLM FP4 bs=1 | **GB10** | 0.55 | 0.14 |
+| BNB NF4 bs=1 | **GB10** | 0.43 | 0.13 |
+| HF BF16 bs=1 | **GB10** | 0.25 | 0.05 |
+| SGLang FP8 bs=4 | RTX 5070 Ti | **9.09** ⭐ | **1.71** ⭐ |
+| vLLM BnB-4bit bs=4 | RTX 5070 Ti | 5.59 | 0.91 |
+| Unsloth BnB-4bit bs=4 | RTX 5070 Ti | 2.00 | 0.33 |
+
+### Key Findings
+
+**FP4 unlocks GB10's real potential:**
+GB10 NF4 (BNB) vs GB10 FP4 (vLLM) at batch=4:
+- Stage 2: 2,373 ms → **456 ms** — **5.2× faster**
+- Stage 3: 7,407 ms → **1,788 ms** — **4.1× faster**
+
+Without FP4, GB10 BF16 is slower than RTX 5070 Ti Unsloth NF4 on every metric. With FP4, GB10 closes the gap significantly — Stage 3 bs=1 (7,292 ms vs RTX 5070 Ti Unsloth 6,699 ms) is now competitive.
+
+**GB10 FP4 vs RTX 5070 Ti best (SGLang FP8):**
+- Stage 2 bs=4: 456 ms vs **110 ms** — RTX 5070 Ti still **4.1× faster**
+- Stage 3 bs=4: 1,788 ms vs **584 ms** — RTX 5070 Ti still **3.1× faster**
+
+**Why GB10 lags despite FP4:**
+The RTX 5070 Ti uses SGLang with FP8 — a fully optimized inference server with continuous batching and PagedAttention. GB10 uses vLLM with nascent FP4 support. When TensorRT-LLM with FP4 becomes available on GB10, throughput is expected to improve significantly. The FP4 GEMM kernel alone (61 TFLOPS) suggests headroom exists.
+
+**GB10 unique advantage — no VRAM ceiling:**
+Both 8B models (total ~32 GB BF16) can be loaded simultaneously without memory pressure, enabling batched multi-model pipelines impossible on a 16 GB RTX 5070 Ti.
+
+| Metric | GB10 | RTX 5070 Ti |
+|---|---|---|
+| VRAM / Mem | **128.5 GB unified** | 16 GB GDDR7 |
+| Load Stage 2 + Stage 3 simultaneously | ✅ trivial | ❌ OOM (32 GB BF16) |
+| Best inference backend | vLLM FP4 (nascent) | SGLang FP8 (mature) |
+| Stage 3 bs=4 throughput | 0.56 img/s | 1.71 img/s (3.1×) |
+| FP4 native hardware | ✅ Blackwell | ❌ |
+
+> **Bottom line:** RTX 5070 Ti wins on per-image latency with mature FP8 toolchain. GB10 wins on memory headroom and multi-model capacity. FP4 is the key to GB10's future — once TensorRT-LLM FP4 matures, the gap is expected to close substantially.
 
 ---
 
